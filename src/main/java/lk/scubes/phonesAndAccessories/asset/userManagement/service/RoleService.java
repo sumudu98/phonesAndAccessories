@@ -1,5 +1,6 @@
 package lk.scubes.phonesAndAccessories.asset.userManagement.service;
 
+
 import lk.scubes.phonesAndAccessories.asset.userManagement.dao.RoleDao;
 import lk.scubes.phonesAndAccessories.asset.userManagement.entity.Role;
 import lk.scubes.phonesAndAccessories.util.interfaces.AbstractService;
@@ -22,7 +23,7 @@ public class RoleService implements AbstractService<Role, Integer > {
     }
 
     @Cacheable
-    public List< Role > findAll() {
+    public List<Role> findAll() {
         return roleDao.findAll();
     }
 

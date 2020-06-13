@@ -1,5 +1,6 @@
 package lk.scubes.phonesAndAccessories.asset.message.entity;
 
+
 import lk.scubes.phonesAndAccessories.asset.employee.entity.Employee;
 import lk.scubes.phonesAndAccessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
