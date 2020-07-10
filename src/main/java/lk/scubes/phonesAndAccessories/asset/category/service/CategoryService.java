@@ -1,8 +1,8 @@
-package lk.scubes.phonesAndAccessories.asset.item.category.service;
+package lk.scubes.phonesAndAccessories.asset.category.service;
 
 
-import lk.scubes.phonesAndAccessories.asset.item.category.dao.CategoryDao;
-import lk.scubes.phonesAndAccessories.asset.item.category.entity.Category;
+import lk.scubes.phonesAndAccessories.asset.category.dao.CategoryDao;
+import lk.scubes.phonesAndAccessories.asset.category.entity.Category;
 import lk.scubes.phonesAndAccessories.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;

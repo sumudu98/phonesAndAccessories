@@ -1,8 +1,7 @@
-package lk.scubes.phonesAndAccessories.asset.item.brand.controller;
+package lk.scubes.phonesAndAccessories.asset.brand.controller;
 
-
-import lk.scubes.phonesAndAccessories.asset.item.brand.entity.Brand;
-import lk.scubes.phonesAndAccessories.asset.item.brand.service.BrandService;
+import lk.scubes.phonesAndAccessories.asset.brand.entity.Brand;
+import lk.scubes.phonesAndAccessories.asset.brand.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

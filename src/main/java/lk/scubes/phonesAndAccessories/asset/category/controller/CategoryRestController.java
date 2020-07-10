@@ -1,10 +1,10 @@
-package lk.scubes.phonesAndAccessories.asset.item.category.controller;
+package lk.scubes.phonesAndAccessories.asset.category.controller;
 
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import lk.scubes.phonesAndAccessories.asset.item.category.entity.Category;
-import lk.scubes.phonesAndAccessories.asset.item.category.service.CategoryService;
+import lk.scubes.phonesAndAccessories.asset.category.entity.Category;
+import lk.scubes.phonesAndAccessories.asset.category.service.CategoryService;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Enum.MainCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;

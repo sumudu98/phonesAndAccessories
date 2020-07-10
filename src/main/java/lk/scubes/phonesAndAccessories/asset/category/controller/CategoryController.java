@@ -1,8 +1,8 @@
-package lk.scubes.phonesAndAccessories.asset.item.category.controller;
+package lk.scubes.phonesAndAccessories.asset.category.controller;
 
 
-import lk.scubes.phonesAndAccessories.asset.item.category.entity.Category;
-import lk.scubes.phonesAndAccessories.asset.item.category.service.CategoryService;
+import lk.scubes.phonesAndAccessories.asset.category.entity.Category;
+import lk.scubes.phonesAndAccessories.asset.category.service.CategoryService;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Enum.MainCategory;
 import lk.scubes.phonesAndAccessories.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public  class CategoryController implements AbstractController<Category, Integer
     }
 
     @GetMapping("/add")
-    public String addForm(Model model) {
+    public String form(Model model) {
         return commonThings(model, new Category(), true);
     }
 

@@ -1,7 +1,8 @@
 package lk.scubes.phonesAndAccessories.asset.item.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.scubes.phonesAndAccessories.asset.item.category.entity.Category;
+import lk.scubes.phonesAndAccessories.asset.color.entity.ItemColor;
+import lk.scubes.phonesAndAccessories.asset.category.entity.Category;
 import lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrderItem;
 import lk.scubes.phonesAndAccessories.asset.supplier.entity.SupplierItem;
 import lk.scubes.phonesAndAccessories.util.audit.AuditEntity;
@@ -32,6 +33,10 @@ public class Item extends AuditEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ItemColor itemColor;
+
+
 
     /*@ManyToOne(fetch = FetchType.EAGER)
     private Brand brand;*/

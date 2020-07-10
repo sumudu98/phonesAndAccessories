@@ -37,7 +37,7 @@ public class SupplierItemController {
     //save supplierItem
 
     @GetMapping
-    public String addForm(Model model) {
+    public String form(Model model) {
            model.addAttribute("supplier", new Supplier());
         model.addAttribute("searchAreaShow", true);
         return "supplier/addSupplierItem";

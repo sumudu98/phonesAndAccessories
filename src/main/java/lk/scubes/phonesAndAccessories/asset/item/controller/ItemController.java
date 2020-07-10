@@ -1,7 +1,8 @@
 package lk.scubes.phonesAndAccessories.asset.item.controller;
 
 
-import lk.scubes.phonesAndAccessories.asset.item.category.controller.CategoryRestController;
+import lk.scubes.phonesAndAccessories.asset.category.controller.CategoryRestController;
+import lk.scubes.phonesAndAccessories.asset.color.service.ItemColorService;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Enum.ItemStatus;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Enum.MainCategory;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Item;
@@ -24,11 +25,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public  class ItemController implements AbstractController<Item, Integer> {
     private final ItemService itemService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
+    private final ItemColorService itemColorService;
+
 
     @Autowired
-    public ItemController(ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
+    public ItemController(ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService, ItemColorService itemColorService) {
         this.itemService = itemService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
+        this.itemColorService = itemColorService;
     }
 
     private String commonThings(Model model, Item item, Boolean addState) {
@@ -36,6 +40,7 @@ public  class ItemController implements AbstractController<Item, Integer> {
         model.addAttribute("item", item);
         model.addAttribute("addStatus", addState);
         model.addAttribute("mainCategories", MainCategory.values());
+        model.addAttribute("itemColors", itemColorService.findAll());
         model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
                 .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
                 .build()
@@ -55,7 +60,7 @@ public  class ItemController implements AbstractController<Item, Integer> {
     }
 
     @GetMapping("/add")
-    public String addForm(Model model) {
+    public String form(Model model) {
         return commonThings(model, new Item(), true);
     }
 

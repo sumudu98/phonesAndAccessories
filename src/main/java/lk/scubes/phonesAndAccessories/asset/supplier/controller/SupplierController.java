@@ -44,7 +44,7 @@ public class SupplierController implements AbstractController<Supplier, Integer>
     }
 
     @GetMapping("/add")
-    public String addForm(Model model) {
+    public String form(Model model) {
         return commonThings(model, new Supplier(), true);
     }
 

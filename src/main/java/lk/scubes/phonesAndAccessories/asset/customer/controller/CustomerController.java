@@ -53,7 +53,7 @@ public  class CustomerController implements AbstractController<Customer, Integer
     }
 
     @GetMapping("/add")
-    public String addForm(Model model) {
+    public String form(Model model) {
         return commonThings(model, new Customer(), true);
     }
 

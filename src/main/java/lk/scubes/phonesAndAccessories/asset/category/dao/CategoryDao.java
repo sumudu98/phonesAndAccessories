@@ -1,7 +1,7 @@
-package lk.scubes.phonesAndAccessories.asset.item.category.dao;
+package lk.scubes.phonesAndAccessories.asset.category.dao;
 
 
-import lk.scubes.phonesAndAccessories.asset.item.category.entity.Category;
+import lk.scubes.phonesAndAccessories.asset.category.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

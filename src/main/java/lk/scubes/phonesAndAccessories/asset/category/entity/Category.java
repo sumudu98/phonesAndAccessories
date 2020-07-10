@@ -1,4 +1,4 @@
-package lk.scubes.phonesAndAccessories.asset.item.category.entity;
+package lk.scubes.phonesAndAccessories.asset.category.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Enum.MainCategory;

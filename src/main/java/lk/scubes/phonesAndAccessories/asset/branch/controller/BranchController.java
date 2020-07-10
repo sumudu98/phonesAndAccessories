@@ -41,7 +41,7 @@ public class BranchController implements AbstractController<Branch, Integer> {
     }
 
     @GetMapping("/add")
-    public String addForm(Model model) {
+    public String form(Model model) {
         return commonThings(model, new Branch(), true);
     }
 

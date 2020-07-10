@@ -102,7 +102,7 @@ public class EmployeeController {
 
     //Send an employee add form
     @GetMapping(value = {"/add"})
-    public String employeeAddForm(Model model) {
+    public String employeeform(Model model) {
         model.addAttribute("addStatus", true);
         model.addAttribute("employee", new Employee());
         return commonThings(model);

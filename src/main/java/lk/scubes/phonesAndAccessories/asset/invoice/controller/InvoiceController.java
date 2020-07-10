@@ -23,28 +23,28 @@ public  class InvoiceController implements AbstractController<Invoice,Integer> {
         this.invoiceService = invoiceService;
     }
 
-    @Override
     public String findAll(Model model) {
         return null;
     }
 
-    @Override
     public String findById(Integer id, Model model) {
         return null;
     }
 
-    @Override
     public String edit(Integer id, Model model) {
         return null;
     }
 
-    @Override
     public String persist(@Valid Invoice invoice, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         return null;
     }
 
-    @Override
     public String delete(Integer id, Model model) {
         return null;
     }
+
+    public String form(Model model) {
+        return null;
+    }
 }
+

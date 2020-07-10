@@ -40,7 +40,7 @@ public class PurchaseOrderController {
     }
 
     @GetMapping
-    public String addForm(Model model) {
+    public String form(Model model) {
         model.addAttribute("purchaseOrder", new PurchaseOrder());
         model.addAttribute("searchAreaShow", true);
         return "purchaseOrder/addPurchaseOrder";
