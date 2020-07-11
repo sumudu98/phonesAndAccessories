@@ -1,7 +1,10 @@
 package lk.scubes.phonesAndAccessories.asset.purchaseOrder.service;
 
 
+
+import lk.scubes.phonesAndAccessories.asset.item.entity.Item;
 import lk.scubes.phonesAndAccessories.asset.purchaseOrder.dao.PurchaseOrderItemDao;
+import lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrder;
 import lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrderItem;
 import lk.scubes.phonesAndAccessories.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +18,27 @@ import java.util.List;
 @Service
 @CacheConfig(cacheNames = "purchaseOrderItem")
 public class PurchaseOrderItemService implements AbstractService<PurchaseOrderItem, Integer> {
-    private final PurchaseOrderItemDao purchaseOrderDao;
+    private final PurchaseOrderItemDao purchaseOrderItemDao;
 
     @Autowired
-    public PurchaseOrderItemService(PurchaseOrderItemDao purchaseOrderDao) {
-        this.purchaseOrderDao = purchaseOrderDao;
+    public PurchaseOrderItemService(PurchaseOrderItemDao purchaseOrderItemDao) {
+        this.purchaseOrderItemDao = purchaseOrderItemDao;
     }
 
     public List<PurchaseOrderItem> findAll() {
-        return purchaseOrderDao.findAll();
+        return purchaseOrderItemDao.findAll();
     }
 
     public PurchaseOrderItem findById(Integer id) {
-        return purchaseOrderDao.getOne(id);
+        return purchaseOrderItemDao.getOne(id);
     }
 
     public PurchaseOrderItem persist(PurchaseOrderItem purchaseOrderItem) {
-        return purchaseOrderDao.save(purchaseOrderItem);
+        return purchaseOrderItemDao.save(purchaseOrderItem);
     }
 
     public boolean delete(Integer id) {
-        purchaseOrderDao.deleteById(id);
+        purchaseOrderItemDao.deleteById(id);
         return false;
     }
 
@@ -45,6 +48,17 @@ public class PurchaseOrderItemService implements AbstractService<PurchaseOrderIt
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<PurchaseOrderItem> purchaseRequestExample = Example.of(purchaseOrderItem, matcher);
-        return purchaseOrderDao.findAll(purchaseRequestExample);
+        return purchaseOrderItemDao.findAll(purchaseRequestExample);
     }
+
+    public PurchaseOrderItem findByPurchaseOrderAndItem(PurchaseOrder purchaseOrder, Item item) {
+        return purchaseOrderItemDao.findByPurchaseOrderAndItem(purchaseOrder, item);
+    }
+
+    public List<PurchaseOrderItem> findByPurchaseOrder(PurchaseOrder purchaseOrder) {
+        return purchaseOrderItemDao.findByPurchaseOrder(purchaseOrder);
+    }
+
+
+
 }

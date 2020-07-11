@@ -1,5 +1,6 @@
 package lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Item;
 import lk.scubes.phonesAndAccessories.util.audit.AuditEntity;
@@ -11,7 +12,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import java.math.BigDecimal;
+
 
 @Entity
 @Getter
@@ -24,12 +25,6 @@ public class PurchaseOrderItem extends AuditEntity {
     private String quantity;
 
     private String receivedQuantity;
-
-    @Column(unique = true, nullable = false)
-    private String code;
-
-    @Column(precision = 10, scale = 2)
-    private BigDecimal price;
 
     @ManyToOne
     private PurchaseOrder purchaseOrder;
