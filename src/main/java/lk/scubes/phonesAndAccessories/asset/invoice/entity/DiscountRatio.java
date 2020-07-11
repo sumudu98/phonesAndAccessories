@@ -1,5 +1,6 @@
 package lk.scubes.phonesAndAccessories.asset.invoice.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.scubes.phonesAndAccessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonFilter("DiscountRatio")
 public class DiscountRatio extends AuditEntity {
 

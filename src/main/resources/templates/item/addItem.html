@@ -89,13 +89,31 @@
                                   th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
                         </div>
                     </div>
+                    <!--Color-->
+                    <div class="form-row text-right">
+                        <div class="col-md-4">
+                            <label class="control-label" for="rop">Colour :</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="" class="form-control" th:field="*{itemColor}"  tabindex="4" style="font-size: large"
+                                    required>
+                                <option value="" disabled>Please select</option>
+                                <option th:each="itemColor : ${itemColors}"
+                                        th:text="${itemColor.name}"
+                                        th:value="${itemColor.id}"
+                                >
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <!--ReOrder Point-->
                     <div class="form-row text-right">
                         <div class="col-md-4">
                             <label class="control-label" for="rop">Reorder Point :</label>
                         </div>
                         <div class="col-md-4">
-                            <input id="rop" th:field="*{rop}" class="form-control" tabindex="8" type="number" required/>
+                            <input id="rop" th:field="*{rop}" class="form-control" tabindex="8"
+                                   type="select    " required/>
                             <span id="ropError" th:errors="*{rop}"
                                   th:if="${#fields.hasErrors('rop')}" class="error">Error ROP</span>
                         </div>
@@ -103,7 +121,8 @@
                     <!--Created by and created at-->
                     <div id="updateStatus" th:if="${addStatus==false}">
                         <!--hidden url -->
-                        <input type="hidden" th:value="${item.category.mainCategory}" id="mainCategoryValueBind">
+                        <input type="hidden" th:value="${item.category.mainCategory}"
+                               id="mainCategoryValueBind">
                         <!--Created by-->
                         <div class="form-row text-right">
                             <div class="col-md-4">
@@ -195,9 +214,11 @@
 
                 <!--Error-->
                 <div class="form-row">
-                    <label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
+                    <label id="errorLabel" th:if="${#fields.hasErrors('*')}"
+                           th:text="'Errors: '">Errors: </label>
                     <ul>
-                        <li id="error" th:each="err: ${#fields.errors('*')}" th:text="${err}" class="error"></li>
+                        <li id="error" th:each="err: ${#fields.errors('*')}" th:text="${err}"
+                            class="error"></li>
                     </ul>
                 </div>
             </div>
