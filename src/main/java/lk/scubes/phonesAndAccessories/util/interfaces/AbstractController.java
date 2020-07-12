@@ -33,4 +33,7 @@ public interface AbstractController<E, I> {
      */
     String delete(I id, Model model);
 
+
+    String form(Model model);
+
 }

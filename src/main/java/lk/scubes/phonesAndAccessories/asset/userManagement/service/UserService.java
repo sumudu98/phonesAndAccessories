@@ -1,5 +1,6 @@
 package lk.scubes.phonesAndAccessories.asset.userManagement.service;
 
+
 import lk.scubes.phonesAndAccessories.asset.employee.entity.Employee;
 import lk.scubes.phonesAndAccessories.asset.userManagement.dao.UserDao;
 import lk.scubes.phonesAndAccessories.asset.userManagement.entity.User;
@@ -27,7 +28,7 @@ public class UserService implements AbstractService<User, Integer > {
     }
 
     @Cacheable
-    public List< User > findAll() {
+    public List<User> findAll() {
         return userDao.findAll();
     }
 

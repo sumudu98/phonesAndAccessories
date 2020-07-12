@@ -41,6 +41,7 @@ let nicRegex = /^([0-9]{9}[vV|xX])|^([0-9]{12})$/;
 let mobileRegex = /^([0][7][\d]{8}$)|^([7][\d]{8})$/;
 let landRegex = /^0((11)|(2(1|[3-7]))|(3[1-8])|(4(1|5|7))|(5(1|2|4|5|7))|(6(3|[5-7]))|([8-9]1))([2-4]|5|7|9)[0-9]{6}$/;
 let nameRegex = /^[a-zA-Z .-]{5}[ a-zA-Z.-]+$/;
+let discountRegex = /^[a-zA-Z .-]{2}[ a-zA-Z.-]+$/;
 let numberRegex = /^([eE][hH][sS][\d]+)$/;
 let invoiceNumberRegex = /^[0-9]{10}$/;
 
@@ -271,6 +272,17 @@ $("#name").bind("keyup", function () {
         backgroundColourChangeBad($(this));
     }
 });
+// discount name validation
+$("#discount").bind("keyup", function () {
+    let discount = $(this).val();
+    if (discountRegex.test(discount)) {
+        backgroundColourChangeGood($(this));
+    } else if (discount.length === 0) {
+        backgroundColourChangeNothingToChange($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
 //calling Name validation
 $("#callingName").bind("keyup", function () {
     let name = $(this).val();
@@ -298,7 +310,7 @@ let backgroundColourChangeGood = function (id) {
 };
 
 let backgroundColourChangeBad = function (id) {
-    $(id).css('background-color', '#FF00AA');
+    $(id).css('background-color', '#ff2d82');
 };
 
 let backgroundColourChangeNothingToChange = function (id) {
