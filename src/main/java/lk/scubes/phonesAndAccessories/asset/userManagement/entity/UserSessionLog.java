@@ -1,6 +1,4 @@
 package lk.scubes.phonesAndAccessories.asset.userManagement.entity;
-
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.Enum.UserSessionLogStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

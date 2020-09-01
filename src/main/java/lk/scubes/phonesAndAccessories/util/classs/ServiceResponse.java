@@ -1,5 +1,6 @@
 package lk.scubes.phonesAndAccessories.util.classs;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

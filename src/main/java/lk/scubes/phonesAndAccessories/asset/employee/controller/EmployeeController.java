@@ -1,15 +1,5 @@
 package lk.scubes.phonesAndAccessories.asset.employee.controller;
 
-import lk.scubes.phonesAndAccessories.asset.commonAsset.service.CommonService;
-import lk.scubes.phonesAndAccessories.asset.employee.entity.Employee;
-import lk.scubes.phonesAndAccessories.asset.employee.entity.EmployeeFiles;
-import lk.scubes.phonesAndAccessories.asset.employee.entity.Enum.EmployeeStatus;
-import lk.scubes.phonesAndAccessories.asset.employee.service.EmployeeFilesService;
-import lk.scubes.phonesAndAccessories.asset.employee.service.EmployeeService;
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.User;
-import lk.scubes.phonesAndAccessories.asset.userManagement.service.UserService;
-import lk.scubes.phonesAndAccessories.util.service.DateTimeAgeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -47,7 +37,13 @@ public class EmployeeController {
 
     // Common things for an employee add and update
     private String commonThings(Model model) {
-        commonService.commonEmployeeAndOffender(model);
+        model.addAttribute("title", Title.values());
+        model.addAttribute("gender", Gender.values());
+        model.addAttribute("designation", Designation.values());
+        model.addAttribute("bloodGroup", BloodGroup.values());
+        model.addAttribute("civilStatus", CivilStatus.values());
+        model.addAttribute("employeeStatus", EmployeeStatus.values());
+
         return "employee/addEmployee";
     }
 
@@ -122,7 +118,7 @@ public class EmployeeController {
                     userService.persist(user);
                 }
             }
-            //save employee images file
+            //save employee img file
             for (MultipartFile file : employee.getFiles()) {
                 if (file.getOriginalFilename() != null) {
                     EmployeeFiles employeeFiles = employeeFilesService.findByName(file.getOriginalFilename());

@@ -1,24 +1,12 @@
 package lk.scubes.phonesAndAccessories;
 
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.BloodGroup;
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.CivilStatus;
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.Gender;
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.Title;
-import lk.scubes.phonesAndAccessories.asset.employee.entity.Employee;
-import lk.scubes.phonesAndAccessories.asset.employee.entity.Enum.Designation;
-import lk.scubes.phonesAndAccessories.asset.employee.entity.Enum.EmployeeStatus;
-import lk.scubes.phonesAndAccessories.asset.employee.service.EmployeeService;
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.Role;
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.User;
-import lk.scubes.phonesAndAccessories.asset.userManagement.service.RoleService;
-import lk.scubes.phonesAndAccessories.asset.userManagement.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
-
 @RestController
 public class ApplicationCreateRestController {
     private final RoleService roleService;
@@ -34,11 +22,11 @@ public class ApplicationCreateRestController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping( "/select/user" )
+    @GetMapping("/select/user")
     public String saveUser() {
         //roles list start
         String[] roles = {"ADMIN"};
-        for ( String s : roles ) {
+        for (String s : roles) {
             Role role = new Role();
             role.setRoleName(s);
             roleService.persist(role);
@@ -46,15 +34,14 @@ public class ApplicationCreateRestController {
 
 //Employee
         Employee employee = new Employee();
-        employee.setPayRoleNumber("11111111");
         employee.setName("Admin User");
         employee.setCallingName("Admin");
-        employee.setName("908670000V");
-        employee.setMobileOne("0750000000");
-        employee.setTitle(Title.DR);
+        employee.setName("901142122V");
+        employee.setMobileOne("0717130052");
+        employee.setMobileTwo("0760870052");
+        employee.setTitle((Title) Title.Mr);
         employee.setGender(Gender.MALE);
-        employee.setBloodGroup(BloodGroup.AP);
-        employee.setDesignation(Designation.ED);
+        employee.setDesignation(Designation.Owner);
         employee.setCivilStatus(CivilStatus.UNMARRIED);
         employee.setEmployeeStatus(EmployeeStatus.WORKING);
         employee.setDateOfBirth(LocalDate.now().minusYears(18));

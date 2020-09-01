@@ -1,11 +1,5 @@
 package lk.scubes.phonesAndAccessories.configuration;
 
-
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.Enum.UserSessionLogStatus;
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.User;
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.UserSessionLog;
-import lk.scubes.phonesAndAccessories.asset.userManagement.service.UserService;
-import lk.scubes.phonesAndAccessories.asset.userManagement.service.UserSessionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

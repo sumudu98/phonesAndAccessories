@@ -1,9 +1,5 @@
 package lk.scubes.phonesAndAccessories.asset.userManagement.service;
 
-import lk.scubes.phonesAndAccessories.asset.employee.entity.Employee;
-import lk.scubes.phonesAndAccessories.asset.userManagement.dao.UserDao;
-import lk.scubes.phonesAndAccessories.asset.userManagement.entity.User;
-import lk.scubes.phonesAndAccessories.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Example;
@@ -16,7 +12,7 @@ import java.util.List;
 
 @Service
 @CacheConfig( cacheNames = {"user"} ) // tells Spring where to store cache for this class
-public class UserService implements AbstractService<User, Integer > {
+public class UserService implements AbstractService< User, Integer> {
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
 
@@ -27,7 +23,7 @@ public class UserService implements AbstractService<User, Integer > {
     }
 
     @Cacheable
-    public List< User > findAll() {
+    public List<User> findAll() {
         return userDao.findAll();
     }
 
@@ -58,7 +54,7 @@ public class UserService implements AbstractService<User, Integer > {
     }
 
     @Cacheable
-    public List< User > search(User user) {
+    public List<User> search(User user) {
         ExampleMatcher matcher =
                 ExampleMatcher.matching().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example< User > userExample = Example.of(user, matcher);
