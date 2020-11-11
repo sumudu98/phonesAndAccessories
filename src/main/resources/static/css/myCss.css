@@ -6,6 +6,13 @@
     "Iskoola Pota";
     --error-color: #fa370d;
 }
+<<<<<<< HEAD
+/* for login form - start*/
+#loginBack {
+    background-image: url('../img/12.jpg');
+    margin: 0;
+    padding: 0;
+=======
 
 
 /*login style*/
@@ -100,42 +107,35 @@
 /*html Background - start*/
 body {
     background-image: url('../img/loginBackground.jpg');
+>>>>>>> cd84908ed0b8ea56093fd81593f24e8ba7fdb3bb
     background-size: cover;
-    background-repeat: no-repeat;
+
+
 }
 
-/*html Background - end*/
+#loginPage .logo1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(200%,-20%);
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    border-radius: 10px;
 
-/*radio button style -start*/
-.checkbox-round {
-    width: 1.3em;
-    height: 1.3em;
-    background-color: #fff;
-    border-radius: 50%;
-    vertical-align: middle;
-    border: 3px solid #20B2AA;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
+<<<<<<< HEAD
 }
-
-.checkbox-round:checked {
-    background-color: green;
-}
-
-/*radio button style -end*/
-
-/*mainWindow properties*/
-.lblText {
-    font-size: 16px;
-}
-
-.page-footer {
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 5px;
-}
-
+#loginPage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 800px;
+    padding: 20px;
+    background: rgba(0,0,0,.2);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.8);
+=======
 
 /* for login form - start*/
 #loginPage {
@@ -257,29 +257,23 @@ nav {
     font-size: 40px;
     color: #3299ff;
     background-color: #ffddca;
+>>>>>>> cd84908ed0b8ea56093fd81593f24e8ba7fdb3bb
     border-radius: 10px;
+
+
 }
 
-#icon {
-    height: 250px;
-    width: 250px;
-    box-shadow: 8px 8px 8px 8px white;
-
-    border-radius: 50%;
-    background: linear-gradient(215deg, #5ca155, #a080c5, #56a4b6, #04c2ec, #f2e053);
-    background-size: 1000% 1000%;
-
-    -webkit-animation: AnimationName 10s ease infinite;
-    -moz-animation: AnimationName 10s ease infinite;
-    -o-animation: AnimationName 10s ease infinite;
-    animation: AnimationName 10s ease infinite;
-}
-
-#iconIn {
-    font-size: 250px;
+#loginPage h1{
+    margin: 0 0 30px;
+    padding: 0;
+    color: #ffffff;
     text-align: center;
 }
 
+<<<<<<< HEAD
+#loginPage  .form-label-group {
+    position: relative;
+=======
 #errorMessage {
     color: var(--error-color);
     font-size: 20px;
@@ -369,85 +363,55 @@ input {
     -moz-animation: AnimationName 31s ease infinite;
     -o-animation: AnimationName 31s ease infinite;
     animation: AnimationName 31s ease infinite;
+>>>>>>> cd84908ed0b8ea56093fd81593f24e8ba7fdb3bb
 }
 
-@-webkit-keyframes AnimationName {
-    0% {
-        background-position: 88% 0%
-    }
-    50% {
-        background-position: 13% 100%
-    }
-    100% {
-        background-position: 88% 0%
-    }
+#loginPage  .form-label-group input {
+    width: 100%;
+    padding: 0 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    outline: none;
+    background: transparent;
 }
 
-@-moz-keyframes AnimationName {
-    0% {
-        background-position: 88% 0%
-    }
-    50% {
-        background-position: 13% 100%
-    }
-    100% {
-        background-position: 88% 0%
-    }
+#loginPage .form-label-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    pointer-events: none;
+    transition: .5s;
 }
 
-@-o-keyframes AnimationName {
-    0% {
-        background-position: 88% 0%
-    }
-    50% {
-        background-position: 13% 100%
-    }
-    100% {
-        background-position: 88% 0%
-    }
+#loginPage .form-label-group input:focus ~ label,
+#loginPage .form-label-group input:valid ~ label{
+    top: -18px;
+    left: 0;
+    color: #ffffff;
+    font-size: 12px;
 }
 
-@keyframes AnimationName {
-    0% {
-        background-position: 88% 0%
-    }
-    50% {
-        background-position: 13% 100%
-    }
-    100% {
-        background-position: 88% 0%
-    }
-}
-
-.form-Border {
-    border-radius: 15px;
-}
-
-/*form - end*/
-
-/*Table show and hide - start*/
-.display {
-    display: none;
-}
-
-/*Table show and hide - end*/
-/*medical Package show area - start*/
-#medicalPackage {
-    border: 2px solid blue;
+#loginPage input [type="submit"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f7b200;
+    padding: 10px 20px;
+    cursor: pointer;
     border-radius: 5px;
-}
 
-#labTestShowTable {
-    margin-top: 3px;
 }
-
-#medicalPackageDetails {
-    margin-top: 5px;
-}
-
-#btnRegisteredPatient {
-    margin-bottom: 5px;
-}
+<<<<<<< HEAD
+/* for login form - end*/
+=======
 
 /*medical Package show area - end*/
 /* enter filed validation - start*/
@@ -500,3 +464,4 @@ hr:before {
 
 /*<hr/> tag style - end */
 
+>>>>>>> cd84908ed0b8ea56093fd81593f24e8ba7fdb3bb
