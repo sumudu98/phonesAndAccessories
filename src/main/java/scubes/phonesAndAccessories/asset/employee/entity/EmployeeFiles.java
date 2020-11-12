@@ -1,11 +1,11 @@
 package scubes.phonesAndAccessories.asset.employee.entity;
 
 
-import scubes.phonesAndAccessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import scubes.phonesAndAccessories.util.audit.AuditEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

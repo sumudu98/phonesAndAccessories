@@ -1,6 +1,4 @@
-package scubes.phonesAndAccessories.asset.employee.entity.Enum;
-
-
+package scubes.phonesAndAccessories.asset.employee.entity.enums;
 
 public enum EmployeeStatus {
     WORKING("Working"),

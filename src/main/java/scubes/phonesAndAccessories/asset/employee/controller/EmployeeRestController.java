@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import scubes.phonesAndAccessories.asset.employee.entity.Employee;
-import scubes.phonesAndAccessories.asset.employee.entity.Enum.Designation;
+import scubes.phonesAndAccessories.asset.employee.entity.enums.Designation;
 import scubes.phonesAndAccessories.asset.employee.service.EmployeeService;
 
 import java.util.List;
