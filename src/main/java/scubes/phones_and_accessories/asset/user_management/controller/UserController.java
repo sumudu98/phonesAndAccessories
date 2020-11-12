@@ -1,4 +1,4 @@
-package scubes.phonesAndAccessories.asset.userManagement.controller;
+package scubes.phones_and_accessories.asset.user_management.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,13 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import scubes.phonesAndAccessories.asset.employee.entity.Employee;
-import scubes.phonesAndAccessories.asset.employee.entity.enums.Designation;
-import scubes.phonesAndAccessories.asset.employee.entity.enums.EmployeeStatus;
-import scubes.phonesAndAccessories.asset.employee.service.EmployeeService;
-import scubes.phonesAndAccessories.asset.userManagement.entity.User;
-import scubes.phonesAndAccessories.asset.userManagement.service.RoleService;
-import scubes.phonesAndAccessories.asset.userManagement.service.UserService;
+import scubes.phones_and_accessories.asset.employee.entity.Employee;
+import scubes.phones_and_accessories.asset.employee.entity.enums.Designation;
+import scubes.phones_and_accessories.asset.employee.entity.enums.EmployeeStatus;
+import scubes.phones_and_accessories.asset.employee.service.EmployeeService;
+import scubes.phones_and_accessories.asset.user_management.entity.User;
+import scubes.phones_and_accessories.asset.user_management.service.RoleService;
+import scubes.phones_and_accessories.asset.user_management.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
