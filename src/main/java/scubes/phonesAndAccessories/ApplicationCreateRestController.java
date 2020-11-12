@@ -1,22 +1,20 @@
 package scubes.phonesAndAccessories;
 
 
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import scubes.phonesAndAccessories.asset.commonAsset.model.Enum.CivilStatus;
 import scubes.phonesAndAccessories.asset.commonAsset.model.Enum.Gender;
 import scubes.phonesAndAccessories.asset.commonAsset.model.Enum.Title;
 import scubes.phonesAndAccessories.asset.employee.entity.Employee;
-import scubes.phonesAndAccessories.asset.employee.entity.Enum.Designation;
-import scubes.phonesAndAccessories.asset.employee.entity.Enum.EmployeeStatus;
+import scubes.phonesAndAccessories.asset.employee.entity.enums.Designation;
+import scubes.phonesAndAccessories.asset.employee.entity.enums.EmployeeStatus;
 import scubes.phonesAndAccessories.asset.employee.service.EmployeeService;
 import scubes.phonesAndAccessories.asset.userManagement.entity.Role;
 import scubes.phonesAndAccessories.asset.userManagement.entity.User;
 import scubes.phonesAndAccessories.asset.userManagement.service.RoleService;
 import scubes.phonesAndAccessories.asset.userManagement.service.UserService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -54,7 +52,7 @@ public class ApplicationCreateRestController {
         employee.setMobileTwo("0760870052");
         employee.setTitle((Title) Title.Mr);
         employee.setGender(Gender.MALE);
-        employee.setDesignation(Designation.Owner);
+        employee.setDesignation(Designation.CA);
         employee.setCivilStatus(CivilStatus.UNMARRIED);
         employee.setEmployeeStatus(EmployeeStatus.WORKING);
         employee.setDateOfBirth(LocalDate.now().minusYears(18));
