@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import scubes.phones_and_accessories.asset.supplier_item.entity.Enum.ItemSupplierStatus;
+import scubes.phones_and_accessories.asset.supplier_item.entity.enums.ItemSupplierStatus;
 import scubes.phones_and_accessories.asset.supplier_item.entity.SupplierItem;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
 

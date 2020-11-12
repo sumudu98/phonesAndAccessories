@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import scubes.phones_and_accessories.asset.discount_ratio.entity.Enum.DiscountRatioStatus;
+import scubes.phones_and_accessories.asset.discount_ratio.entity.enums.DiscountRatioStatus;
 import scubes.phones_and_accessories.asset.invoice.entity.Invoice;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
 

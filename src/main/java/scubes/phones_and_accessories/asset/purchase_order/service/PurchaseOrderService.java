@@ -6,7 +6,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import scubes.phones_and_accessories.asset.purchase_order.dao.PurchaseOrderDao;
-import scubes.phones_and_accessories.asset.purchase_order.entity.Enum.PurchaseOrderStatus;
+import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
 import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;

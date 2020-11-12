@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
 import scubes.phones_and_accessories.asset.supplier_item.dao.SupplierItemDao;
-import scubes.phones_and_accessories.asset.supplier_item.entity.Enum.ItemSupplierStatus;
+import scubes.phones_and_accessories.asset.supplier_item.entity.enums.ItemSupplierStatus;
 import scubes.phones_and_accessories.asset.supplier_item.entity.SupplierItem;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;
 

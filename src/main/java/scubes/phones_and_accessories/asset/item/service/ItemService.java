@@ -7,7 +7,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import scubes.phones_and_accessories.asset.category.entity.Category;
 import scubes.phones_and_accessories.asset.item.dao.ItemDao;
-import scubes.phones_and_accessories.asset.item.entity.Enum.ItemStatus;
+import scubes.phones_and_accessories.asset.item.entity.enums.ItemStatus;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import scubes.phones_and_accessories.asset.ledger.dao.LedgerDao;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;

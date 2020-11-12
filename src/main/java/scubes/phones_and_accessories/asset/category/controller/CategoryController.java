@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import scubes.phones_and_accessories.asset.category.entity.Category;
 import scubes.phones_and_accessories.asset.category.service.CategoryService;
-import scubes.phones_and_accessories.asset.item.entity.Enum.MainCategory;
+import scubes.phones_and_accessories.asset.item.entity.enums.MainCategory;
 import scubes.phones_and_accessories.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;

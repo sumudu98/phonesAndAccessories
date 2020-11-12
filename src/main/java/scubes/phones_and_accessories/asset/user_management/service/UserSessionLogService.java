@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import scubes.phones_and_accessories.asset.user_management.dao.UserSessionLogDao;
-import scubes.phones_and_accessories.asset.user_management.entity.Enum.UserSessionLogStatus;
+import scubes.phones_and_accessories.asset.user_management.entity.enums.UserSessionLogStatus;
 import scubes.phones_and_accessories.asset.user_management.entity.User;
 import scubes.phones_and_accessories.asset.user_management.entity.UserSessionLog;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;

@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import scubes.phones_and_accessories.asset.customer.entity.Customer;
 import scubes.phones_and_accessories.asset.discount_ratio.entity.DiscountRatio;
-import scubes.phones_and_accessories.asset.invoice.entity.Enum.InvoicePrintOrNot;
-import scubes.phones_and_accessories.asset.invoice.entity.Enum.InvoiceValidOrNot;
-import scubes.phones_and_accessories.asset.invoice.entity.Enum.PaymentMethod;
+import scubes.phones_and_accessories.asset.invoice.entity.enums.InvoicePrintOrNot;
+import scubes.phones_and_accessories.asset.invoice.entity.enums.InvoiceValidOrNot;
+import scubes.phones_and_accessories.asset.invoice.entity.enums.PaymentMethod;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
 
 import javax.persistence.*;

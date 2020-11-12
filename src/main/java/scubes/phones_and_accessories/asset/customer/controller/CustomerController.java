@@ -2,7 +2,7 @@ package scubes.phones_and_accessories.asset.customer.controller;
 
 
 
-import scubes.phones_and_accessories.asset.common_asset.model.Enum.Title;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.Title;
 import scubes.phones_and_accessories.asset.customer.entity.Customer;
 import scubes.phones_and_accessories.asset.customer.service.CustomerService;
 import scubes.phones_and_accessories.util.interfaces.AbstractController;

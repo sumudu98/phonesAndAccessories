@@ -10,7 +10,7 @@ import lombok.Setter;
 import scubes.phones_and_accessories.asset.brand.entity.Brand;
 import scubes.phones_and_accessories.asset.category.entity.Category;
 import scubes.phones_and_accessories.asset.color.entity.ItemColor;
-import scubes.phones_and_accessories.asset.item.entity.Enum.ItemStatus;
+import scubes.phones_and_accessories.asset.item.entity.enums.ItemStatus;
 import scubes.phones_and_accessories.asset.ledger.entity.Ledger;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrderItem;
 import scubes.phones_and_accessories.asset.supplier_item.entity.SupplierItem;

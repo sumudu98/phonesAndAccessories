@@ -4,7 +4,7 @@ package scubes.phones_and_accessories.asset.discount_ratio.service;
 import org.springframework.stereotype.Service;
 import scubes.phones_and_accessories.asset.discount_ratio.dao.DiscountRatioDao;
 import scubes.phones_and_accessories.asset.discount_ratio.entity.DiscountRatio;
-import scubes.phones_and_accessories.asset.discount_ratio.entity.Enum.DiscountRatioStatus;
+import scubes.phones_and_accessories.asset.discount_ratio.entity.enums.DiscountRatioStatus;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;
 
 import java.util.List;

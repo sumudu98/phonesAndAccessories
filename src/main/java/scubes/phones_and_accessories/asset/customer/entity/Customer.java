@@ -1,7 +1,7 @@
 package scubes.phones_and_accessories.asset.customer.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import scubes.phones_and_accessories.asset.common_asset.model.Enum.Title;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.Title;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

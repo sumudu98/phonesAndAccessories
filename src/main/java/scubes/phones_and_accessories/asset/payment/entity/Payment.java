@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import scubes.phones_and_accessories.asset.invoice.entity.Enum.PaymentMethod;
+import scubes.phones_and_accessories.asset.invoice.entity.enums.PaymentMethod;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
 

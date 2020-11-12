@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
-import scubes.phones_and_accessories.asset.supplier_item.entity.Enum.ItemSupplierStatus;
+import scubes.phones_and_accessories.asset.supplier_item.entity.enums.ItemSupplierStatus;
 import scubes.phones_and_accessories.asset.supplier_item.entity.SupplierItem;
 
 import java.util.List;

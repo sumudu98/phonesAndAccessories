@@ -6,7 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import scubes.phones_and_accessories.asset.discount_ratio.entity.DiscountRatio;
-import scubes.phones_and_accessories.asset.discount_ratio.entity.Enum.DiscountRatioStatus;
+import scubes.phones_and_accessories.asset.discount_ratio.entity.enums.DiscountRatioStatus;
 import scubes.phones_and_accessories.asset.discount_ratio.service.DiscountRatioService;
 
 import javax.validation.Valid;

@@ -1,4 +1,4 @@
-package scubes.phones_and_accessories.asset.discount_ratio.entity.Enum;
+package scubes.phones_and_accessories.asset.discount_ratio.entity.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

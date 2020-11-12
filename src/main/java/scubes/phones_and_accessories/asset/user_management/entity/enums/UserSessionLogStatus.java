@@ -1,4 +1,4 @@
-package scubes.phones_and_accessories.asset.user_management.entity.Enum;
+package scubes.phones_and_accessories.asset.user_management.entity.enums;
 
 
 import lombok.AllArgsConstructor;

@@ -5,7 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.stereotype.Component;
-import scubes.phones_and_accessories.asset.user_management.entity.Enum.UserSessionLogStatus;
+import scubes.phones_and_accessories.asset.user_management.entity.enums.UserSessionLogStatus;
 import scubes.phones_and_accessories.asset.user_management.entity.User;
 import scubes.phones_and_accessories.asset.user_management.entity.UserSessionLog;
 import scubes.phones_and_accessories.asset.user_management.service.UserService;

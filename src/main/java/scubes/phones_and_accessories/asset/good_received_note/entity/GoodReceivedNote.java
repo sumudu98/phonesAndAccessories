@@ -3,7 +3,7 @@ package scubes.phones_and_accessories.asset.good_received_note.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.*;
-import scubes.phones_and_accessories.asset.good_received_note.entity.Enum.GoodReceivedNoteState;
+import scubes.phones_and_accessories.asset.good_received_note.entity.enums.GoodReceivedNoteState;
 import scubes.phones_and_accessories.asset.ledger.entity.Ledger;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
 import scubes.phones_and_accessories.util.audit.AuditEntity;

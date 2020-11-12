@@ -1,4 +1,4 @@
-package scubes.phones_and_accessories.asset.good_received_note.entity.Enum;
+package scubes.phones_and_accessories.asset.good_received_note.entity.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

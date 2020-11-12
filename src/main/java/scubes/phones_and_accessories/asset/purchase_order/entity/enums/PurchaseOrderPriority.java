@@ -1,4 +1,4 @@
-package scubes.phones_and_accessories.asset.purchase_order.entity.Enum;
+package scubes.phones_and_accessories.asset.purchase_order.entity.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

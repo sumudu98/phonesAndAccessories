@@ -2,7 +2,7 @@ package scubes.phones_and_accessories.asset.category.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import scubes.phones_and_accessories.asset.item.entity.Enum.MainCategory;
+import scubes.phones_and_accessories.asset.item.entity.enums.MainCategory;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

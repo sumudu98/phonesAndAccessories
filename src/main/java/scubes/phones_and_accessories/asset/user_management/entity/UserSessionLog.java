@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import scubes.phones_and_accessories.asset.user_management.entity.Enum.UserSessionLogStatus;
+import scubes.phones_and_accessories.asset.user_management.entity.enums.UserSessionLogStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

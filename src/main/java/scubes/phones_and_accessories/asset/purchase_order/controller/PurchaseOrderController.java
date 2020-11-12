@@ -9,8 +9,8 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import scubes.phones_and_accessories.asset.common_asset.service.CommonService;
 import scubes.phones_and_accessories.asset.ledger.dao.LedgerDao;
-import scubes.phones_and_accessories.asset.purchase_order.entity.Enum.PurchaseOrderPriority;
-import scubes.phones_and_accessories.asset.purchase_order.entity.Enum.PurchaseOrderStatus;
+import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderPriority;
+import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrderItem;
 import scubes.phones_and_accessories.asset.purchase_order.service.PurchaseOrderItemService;
