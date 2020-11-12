@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import scubes.phonesAndAccessories.asset.brand.entity.Brand;
 import scubes.phonesAndAccessories.asset.category.entity.Category;
+import scubes.phonesAndAccessories.asset.color.entity.ItemColor;
 import scubes.phonesAndAccessories.asset.item.entity.Enum.ItemStatus;
 import scubes.phonesAndAccessories.asset.ledger.entity.Ledger;
 import scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrderItem;
@@ -28,7 +30,7 @@ import java.util.List;
 @JsonFilter( "Item" )
 public class Item extends AuditEntity {
 
-    @Size( min = 5, message = "Your name cannot be accepted" )
+    @Size( min = 5, message = "Your name can not be accepted" )
     private String name;
 
     @NotEmpty
@@ -45,6 +47,12 @@ public class Item extends AuditEntity {
 
     @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private Brand brand;
+
+    @ManyToOne
+    private ItemColor itemColor;
 
     @OneToMany( mappedBy = "item" )
     private List< SupplierItem > supplierItems;
