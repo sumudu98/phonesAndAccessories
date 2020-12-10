@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <title>category</title>
 </head>
-<body>
+<body class="sb-nav-fixed">
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<div id="layoutSidenav">
+    <div th:replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
 
 <!--Heading Area-->
 <div class="container-fluid bg-dark form-Border">
@@ -32,7 +37,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-info formBorder text-center">
+<div class="container-fluid bg-light formBorder text-center">
     <!--Table view-->
     <div class="col">
         <div class="col" id="categoryListPresent" th:if="${not #lists.isEmpty(categorys)}">
@@ -80,6 +85,7 @@
         </script>
     </div>
 </div>
+        </main>
 <!--footer include-->
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 <!--script include-->

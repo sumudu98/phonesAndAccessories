@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <title>Kmart Super</title>
 </head>
-<body>
+<body class="sb-nav-fixed">
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<div id="layoutSidenav">
+    <div th:replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
 <!--Table view-->
 <div class="col">
     <div class="col" id="purchaseRequestListPresent" th:if="${not #lists.isEmpty(purchaseRequests)}">
@@ -50,6 +55,7 @@
         /*active boostrap alert - end*/
     </script>
 </div>
+        </main>
 
 
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>

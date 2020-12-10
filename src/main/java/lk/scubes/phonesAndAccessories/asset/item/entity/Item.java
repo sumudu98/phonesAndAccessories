@@ -1,6 +1,7 @@
 package lk.scubes.phonesAndAccessories.asset.item.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.scubes.phonesAndAccessories.asset.brand.entity.Brand;
 import lk.scubes.phonesAndAccessories.asset.color.entity.ItemColor;
 import lk.scubes.phonesAndAccessories.asset.category.entity.Category;
 import lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrderItem;
@@ -26,7 +27,7 @@ import java.util.List;
 @JsonFilter("Item")
 public class Item extends AuditEntity {
 
-    @Size(min = 5, message = "Your name cannot be accepted")
+    @Size(min = 2, message = "Your name cannot be accepted")
     private String name;
 
     private Integer rop;
@@ -38,14 +39,13 @@ public class Item extends AuditEntity {
 
 
 
-    /*@ManyToOne(fetch = FetchType.EAGER)
-    private Brand brand;*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Brand brand;
 
     @OneToMany(mappedBy = "item")
     private List<PurchaseOrderItem> purchaseOrderItems;
 
-/*    @OneToMany(mappedBy = "item")
-    private List<ItemBatch> itemBatches;*/
+
 
     @OneToMany(mappedBy = "item")
     private List<SupplierItem> supplierItems;

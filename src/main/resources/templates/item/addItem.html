@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <title>addItem</title>
 </head>
-<body>
+<body class="sb-nav-fixed">
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<div id="layoutSidenav">
+    <div th:replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
 
 <!--heading Area-->
 <div class="container-fluid bg-dark form-Border">
@@ -101,6 +106,23 @@
                                 <option th:each="itemColor : ${itemColors}"
                                         th:text="${itemColor.name}"
                                         th:value="${itemColor.id}"
+                                >
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--brand-->
+                    <div class="form-row text-right">
+                        <div class="col-md-4">
+                            <label class="control-label" for="rop">Brand :</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="" class="form-control" th:field="*{brand}"  tabindex="4" style="font-size: large"
+                                    required>
+                                <option value="" disabled>Please select</option>
+                                <option th:each="brand : ${brands}"
+                                        th:text="${brand.name}"
+                                        th:value="${brand.id}"
                                 >
                                 </option>
                             </select>
@@ -225,6 +247,7 @@
         </form>
     </div>
 </div>
+        </main>
 
 
 <!--footer include-->

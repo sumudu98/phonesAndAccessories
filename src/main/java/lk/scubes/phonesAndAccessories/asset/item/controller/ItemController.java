@@ -1,6 +1,7 @@
 package lk.scubes.phonesAndAccessories.asset.item.controller;
 
 
+import lk.scubes.phonesAndAccessories.asset.brand.service.BrandService;
 import lk.scubes.phonesAndAccessories.asset.category.controller.CategoryRestController;
 import lk.scubes.phonesAndAccessories.asset.color.service.ItemColorService;
 import lk.scubes.phonesAndAccessories.asset.item.entity.Enum.ItemStatus;
@@ -26,13 +27,15 @@ public  class ItemController implements AbstractController<Item, Integer> {
     private final ItemService itemService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
     private final ItemColorService itemColorService;
+    private final BrandService brandService;
 
 
     @Autowired
-    public ItemController(ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService, ItemColorService itemColorService) {
+    public ItemController(ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService, ItemColorService itemColorService, BrandService brandService) {
         this.itemService = itemService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
         this.itemColorService = itemColorService;
+        this.brandService = brandService;
     }
 
     private String commonThings(Model model, Item item, Boolean addState) {
@@ -41,6 +44,7 @@ public  class ItemController implements AbstractController<Item, Integer> {
         model.addAttribute("addStatus", addState);
         model.addAttribute("mainCategories", MainCategory.values());
         model.addAttribute("itemColors", itemColorService.findAll());
+        model.addAttribute("brands", brandService.findAll());
         model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
                 .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
                 .build()
