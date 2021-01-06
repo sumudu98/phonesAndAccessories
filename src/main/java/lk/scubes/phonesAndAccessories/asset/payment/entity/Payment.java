@@ -1,9 +1,6 @@
-package lk.scubes.phonesAndAccessories.asset.payment.entity;
-
 import com.fasterxml.jackson.annotation.JsonFilter;
-
-
-import lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrder;
+import lk.scubes.phonesAndAccessories.asset.common_asset.model.enums.LiveDead;
+import lk.scubes.phonesAndAccessories.asset.invoice.entity.Enum.PaymentMethod;
 import lk.scubes.phonesAndAccessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @JsonFilter("Payment")
 public class Payment extends AuditEntity {
+
     private String bankName;
 
     private String remarks;
@@ -27,9 +25,15 @@ public class Payment extends AuditEntity {
     @Column(nullable = false, unique = true)
     private String code;
 
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private PurchaseOrder purchaseOrder;
 }

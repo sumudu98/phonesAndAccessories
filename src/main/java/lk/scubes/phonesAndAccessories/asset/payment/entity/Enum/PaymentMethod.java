@@ -1,5 +1,3 @@
-package lk.sanchana.bagShop.asset.payment.entity.Enum;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -9,7 +9,7 @@
 <div id="layoutSidenav">
     <div th:replace="~{fragments/sideNav :: sideNavFragment}">
     </div>
-    <div id="layoutSidenav_content">
+    <div id="layoutSidenav_content" >
         <main>
             <!--Heading Area-->
             <div class="container-fluid">
@@ -21,8 +21,8 @@
                         </a>
                     </div>
                     <!--Form Name-->
-                    <div class="col">
-                        <h5 class="text text-right">
+                    <div class="card-group col ">
+                        <h5 class="text text-center display-5  font-weight-normal">
                             <span th:text="${addStatus==true?'Add New Item Color':'Update Item Color Details'}"></span>
                         </h5>
                     </div>
@@ -34,6 +34,11 @@
                     </div>-->
                 </div>
             </div>
+        <br/>
+
+
+
+
 
             <!--Form Content-->
             <div class="container-fluid formBorder">
@@ -44,6 +49,7 @@
                         <div class="form-group col-sm-4">
                             <label for="name">Name :</label>
                             <input type="text" class="form-control" placeholder="Color name" id="name" th:field="*{name}" tabindex="4" required/>
+
                             <span id="nameError" th:errors="*{name}"
                                   th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
                         </div>

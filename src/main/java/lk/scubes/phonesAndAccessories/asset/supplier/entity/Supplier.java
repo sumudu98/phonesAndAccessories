@@ -1,7 +1,8 @@
 package lk.scubes.phonesAndAccessories.asset.supplier.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrder;
+
+import lk.scubes.phonesAndAccessories.asset.purchase_order_item.entity.PurchaseOrderItem;
 import lk.scubes.phonesAndAccessories.asset.supplier.entity.Enum.ItemSupplierStatus;
 import lk.scubes.phonesAndAccessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -41,7 +42,7 @@ public class Supplier extends AuditEntity {
     private String address;
 
     @OneToMany(mappedBy = "supplier")
-    private List<PurchaseOrder> purchaseOrders;
+    private List<PurchaseOrderItem> purchaseOrders;
 
     @OneToMany(mappedBy = "supplier")
     private List<SupplierItem> supplierItems;

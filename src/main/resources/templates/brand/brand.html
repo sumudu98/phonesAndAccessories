@@ -12,14 +12,16 @@
     <div id="layoutSidenav_content">
         <main>
 <!--heading Area-->
-<div class="container-fluid bg-dark form-Border">
-    <div class="row text-center formManagement border-info">
-        <!--New Brand Button-->
-        <div class="col">
-            <a class="btn btn-success" href="/brand/add" tabindex="1">
-                <i class="fas fa-plus" style="font-size: 20px"></i>&nbsp;&nbsp;New
-            </a>
-        </div>
+            <div class="container-fluid ">
+                <h1 class="mt-4 text-center display-3 font-weight-normal">Brand Name</h1>
+                <div class="row formManagement border-info mb-4 mt-4">
+                    <!--New Color Button-->
+                    <div class="col">
+                        <a class="btn btn-outline-success  btn-sm" href="/brand/add" tabindex="1">
+                            <i class="fas fa-plus" style="font-size: 12px"></i>&nbsp;&nbsp;New
+                        </a>
+                    </div>
+
         <!--List Name-->
         <div class="col">
             <h2 class="text-white text-center">
@@ -38,7 +40,12 @@
     </div>
 </div>
 <!--Brandes List-->
-<div class="container-fluid bg-dark formBorder text-center">
+            <div class="card mb-4  w-40">
+                <!--Table Title-->
+                <div class="card-header">
+                    <i class="fas fa-table fa-th-list mr-1"></i>
+                    Brand List
+                </div>
     <!--Table view-->
     <div class="col">
         <div class="col" id="brandListPresent" th:if="${not #lists.isEmpty(brands)}">
@@ -55,9 +62,9 @@
                     <th th:text="${rowCount.count}"></th>
                     <th th:text="${brand.name}"></th>
                     <th>
-                        <a id="brandEdit" th:href="${'/brand/edit/' + brand.id}" class="btn btn-success btn-sm"><i
+                        <a id="brandEdit" th:href="${'/brand/edit/' + brand.id}" class="btn btn-outline-success btn-sm"><i
                                 class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
-                        <a id="brandRemove" th:href="${'/brand/delete/' + brand.id}" class="btn btn-danger btn-sm">
+                        <a id="brandRemove" th:href="${'/brand/delete/' + brand.id}" class="btn btn-outline-danger btn-sm">
                             <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
                                 class="fa fa-trash" style="font-size: 15px"></i>
                             Delete</a>
@@ -103,7 +110,7 @@
             /*active boostrap alert - end*/
         </script>
     </div>
-</div>
+</div>1
         </main>
 <!--footer include-->
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>

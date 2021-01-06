@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.scubes.phonesAndAccessories.asset.brand.entity.Brand;
 import lk.scubes.phonesAndAccessories.asset.color.entity.ItemColor;
 import lk.scubes.phonesAndAccessories.asset.category.entity.Category;
-import lk.scubes.phonesAndAccessories.asset.purchaseOrder.entity.PurchaseOrderItem;
+import lk.scubes.phonesAndAccessories.asset.purchase_order_item.entity.PurchaseOrderItem;
 import lk.scubes.phonesAndAccessories.asset.supplier.entity.SupplierItem;
 import lk.scubes.phonesAndAccessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;

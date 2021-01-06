@@ -1,7 +1,8 @@
 package lk.scubes.phonesAndAccessories.asset.customer.controller;
 
 
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.Title;
+
+import lk.scubes.phonesAndAccessories.asset.common_asset.model.enums.Title;
 import lk.scubes.phonesAndAccessories.asset.customer.entity.Customer;
 import lk.scubes.phonesAndAccessories.asset.customer.service.CustomerService;
 import lk.scubes.phonesAndAccessories.util.interfaces.AbstractController;

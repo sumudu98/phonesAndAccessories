@@ -1,11 +1,11 @@
 package lk.scubes.phonesAndAccessories.asset.employee.controller;
 
 
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.BloodGroup;
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.CivilStatus;
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.Gender;
-import lk.scubes.phonesAndAccessories.asset.commonAsset.model.Enum.Title;
-import lk.scubes.phonesAndAccessories.asset.commonAsset.service.CommonService;
+import lk.scubes.phonesAndAccessories.asset.common_asset.model.enums.BloodGroup;
+import lk.scubes.phonesAndAccessories.asset.common_asset.model.enums.CivilStatus;
+import lk.scubes.phonesAndAccessories.asset.common_asset.model.enums.Gender;
+import lk.scubes.phonesAndAccessories.asset.common_asset.model.enums.Title;
+import lk.scubes.phonesAndAccessories.asset.common_asset.service.CommonService;
 import lk.scubes.phonesAndAccessories.asset.employee.entity.Employee;
 import lk.scubes.phonesAndAccessories.asset.employee.entity.EmployeeFiles;
 import lk.scubes.phonesAndAccessories.asset.employee.entity.Enum.Designation;
