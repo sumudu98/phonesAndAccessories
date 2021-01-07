@@ -1,11 +1,11 @@
 package scubes.phones_and_accessories.asset.discount_ratio.service;
 
 
-import org.springframework.stereotype.Service;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.discount_ratio.dao.DiscountRatioDao;
 import scubes.phones_and_accessories.asset.discount_ratio.entity.DiscountRatio;
-import scubes.phones_and_accessories.asset.discount_ratio.entity.enums.DiscountRatioStatus;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -27,12 +27,15 @@ private final DiscountRatioDao discountRatioDao;
 
     public DiscountRatio persist(DiscountRatio discountRatio) {
         if ( discountRatio.getId() == null ){
-            discountRatio.setDiscountRatioStatus(DiscountRatioStatus.ACTIVE);
+            discountRatio.setLiveDead(LiveDead.ACTIVE);
         }
         return discountRatioDao.save(discountRatio);
     }
 
     public boolean delete(Integer id) {
+        DiscountRatio discountRatio =  discountRatioDao.getOne(id);
+        discountRatio.setLiveDead(LiveDead.STOP);
+        discountRatioDao.save(discountRatio);
         return false;
     }
 

@@ -1,6 +1,5 @@
 package scubes.phones_and_accessories.asset.user_management.entity;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

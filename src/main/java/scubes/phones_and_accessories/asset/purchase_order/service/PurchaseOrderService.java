@@ -1,15 +1,17 @@
 package scubes.phones_and_accessories.asset.purchase_order.service;
 
+
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
+import scubes.phones_and_accessories.asset.purchase_order.dao.PurchaseOrderDao;
+import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
+import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
+import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
+import scubes.phones_and_accessories.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import scubes.phones_and_accessories.asset.purchase_order.dao.PurchaseOrderDao;
-import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
-import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
-import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
-import scubes.phones_and_accessories.util.interfaces.AbstractService;
 
 import java.util.List;
 
@@ -32,11 +34,15 @@ public class PurchaseOrderService implements AbstractService< PurchaseOrder, Int
     }
 
     public PurchaseOrder persist(PurchaseOrder purchaseOrder) {
+        if(purchaseOrder.getId()==null){
+            purchaseOrder.setLiveDead(LiveDead.ACTIVE);}
         return purchaseOrderDao.save(purchaseOrder);
     }
 
     public boolean delete(Integer id) {
-        purchaseOrderDao.deleteById(id);
+        PurchaseOrder purchaseOrder =  purchaseOrderDao.getOne(id);
+        purchaseOrder.setLiveDead(LiveDead.STOP);
+        purchaseOrderDao.save(purchaseOrder);
         return false;
     }
 

@@ -1,5 +1,6 @@
 package scubes.phones_and_accessories.asset.user_management;
 
+import scubes.phones_and_accessories.asset.user_management.user.entity.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
-import scubes.phones_and_accessories.asset.user_management.entity.User;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

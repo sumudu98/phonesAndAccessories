@@ -1,11 +1,11 @@
 package scubes.phones_and_accessories.asset.supplier_item.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
 import scubes.phones_and_accessories.asset.supplier_item.entity.enums.ItemSupplierStatus;
@@ -27,6 +27,9 @@ public class SupplierItem extends AuditEntity {
 
     @Enumerated(EnumType.STRING)
     private ItemSupplierStatus itemSupplierStatus;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
 
     @ManyToOne
     private Item item;

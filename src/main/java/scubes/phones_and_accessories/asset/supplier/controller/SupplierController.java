@@ -1,22 +1,22 @@
 package scubes.phones_and_accessories.asset.supplier.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
 import scubes.phones_and_accessories.asset.supplier.service.SupplierService;
-import scubes.phones_and_accessories.util.interfaces.AbstractController;
 import scubes.phones_and_accessories.util.service.MakeAutoGenerateNumberService;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/supplier")
-public  class SupplierController implements AbstractController< Supplier, Integer> {
+public  class SupplierController {
     private final SupplierService supplierService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 
@@ -34,9 +34,13 @@ public  class SupplierController implements AbstractController< Supplier, Intege
 
     @GetMapping
     public String findAll(Model model) {
-        model.addAttribute("suppliers", supplierService.findAll());
+        model.addAttribute("suppliers", supplierService.findAll().stream()
+            .filter(x-> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "supplier/supplier";
     }
+
+
 
     @GetMapping("/add")
     public String addForm(Model model) {
@@ -61,12 +65,12 @@ public  class SupplierController implements AbstractController< Supplier, Intege
 
             if (DBSupplier == null) {
                 //need to generate new one
-                supplier.setCode("JNS"+makeAutoGenerateNumberService.numberAutoGen(null).toString());
+                supplier.setCode("CTMS"+makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
                 System.out.println("last supplier not null");
                 //if there is supplier in db need to get that supplier's code and increase its value
-                String previousCode = DBSupplier.getCode().substring(3);
-                supplier.setCode("JNS"+makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+                String previousCode = DBSupplier.getCode().substring(4);
+                supplier.setCode("CTMS"+makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
             }
             //send welcome message and email
             if (supplier.getEmail() != null) {

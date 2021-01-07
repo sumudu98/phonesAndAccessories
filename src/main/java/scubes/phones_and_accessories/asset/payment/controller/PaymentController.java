@@ -1,20 +1,21 @@
 package scubes.phones_and_accessories.asset.payment.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+
+import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
+import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
+import scubes.phones_and_accessories.asset.purchase_order.service.PurchaseOrderService;
 import scubes.phones_and_accessories.asset.good_received_note.entity.enums.GoodReceivedNoteState;
 import scubes.phones_and_accessories.asset.good_received_note.entity.GoodReceivedNote;
 import scubes.phones_and_accessories.asset.good_received_note.service.GoodReceivedNoteService;
 import scubes.phones_and_accessories.asset.invoice.entity.enums.PaymentMethod;
 import scubes.phones_and_accessories.asset.payment.entity.Payment;
 import scubes.phones_and_accessories.asset.payment.service.PaymentService;
-import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
-import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
-import scubes.phones_and_accessories.asset.purchase_order.service.PurchaseOrderService;
 import scubes.phones_and_accessories.util.service.MakeAutoGenerateNumberService;
 import scubes.phones_and_accessories.util.service.OperatorService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -67,6 +68,7 @@ public class PaymentController {
 
             model.addAttribute("purchaseOrders", purchaseOrders);
         }
+        model.addAttribute("addState", true);
         return "payment/payment";
     }
 
@@ -102,6 +104,7 @@ public class PaymentController {
         }
         model.addAttribute("payment", new Payment());
         model.addAttribute("purchaseOrders", purchaseOrderNotPaid);
+        System.out.println(purchaseOrderNeedToPay.getNeedToPaid() +"need to pay   paid amount "+ purchaseOrderNeedToPay.getPaidAmount());
         model.addAttribute("purchaseOrderNeedToPay", purchaseOrderNeedToPay);
         model.addAttribute("paymentMethods", PaymentMethod.values());
         return "payment/addPayment";
@@ -115,12 +118,11 @@ public class PaymentController {
         if ( payment.getId() == null ) {
             if ( paymentService.lastPayment() == null ) {
                 //need to generate new one
-                payment.setCode("JNPM" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+                payment.setCode("SSMP" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
-                System.out.println("last customer not null");
                 //if there is customer in db need to get that customer's code and increase its value
                 String previousCode = paymentService.lastPayment().getCode().substring(4);
-                payment.setCode("JNPM" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+                payment.setCode("SSMP" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
             }
         }
 

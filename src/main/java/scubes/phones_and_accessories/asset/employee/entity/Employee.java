@@ -1,6 +1,5 @@
 package scubes.phones_and_accessories.asset.employee.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,10 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
+import scubes.phones_and_accessories.asset.common_asset.model.FileInfo;
 import scubes.phones_and_accessories.asset.common_asset.model.enums.CivilStatus;
 import scubes.phones_and_accessories.asset.common_asset.model.enums.Gender;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.common_asset.model.enums.Title;
-import scubes.phones_and_accessories.asset.common_asset.model.FileInfo;
 import scubes.phones_and_accessories.asset.employee.entity.enums.Designation;
 import scubes.phones_and_accessories.asset.employee.entity.enums.EmployeeStatus;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
@@ -71,15 +71,18 @@ public class Employee extends AuditEntity {
     @Enumerated( EnumType.STRING )
     private EmployeeStatus employeeStatus;
 
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateOfBirth;
 
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateOfAssignment;
 
+
     @Transient
     private MultipartFile file;
-
 
     @Transient
     private FileInfo fileInfo;

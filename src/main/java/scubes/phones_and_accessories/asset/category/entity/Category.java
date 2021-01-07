@@ -1,7 +1,7 @@
 package scubes.phones_and_accessories.asset.category.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.item.entity.enums.MainCategory;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import lombok.AllArgsConstructor;
@@ -18,20 +18,22 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Category")
+@JsonFilter( "Category" )
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Integer id;
 
-    @Enumerated( EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private MainCategory mainCategory;
 
-    @Size(min = 3, message = "Your name cannot be accepted")
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+    @Size( min = 3, message = "Your name cannot be accepted" )
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List< Item > items;
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Item> items;
 }
-

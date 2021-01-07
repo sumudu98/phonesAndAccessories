@@ -1,6 +1,18 @@
 package scubes.phones_and_accessories.asset.item.controller;
 
 
+import scubes.phones_and_accessories.asset.brand.service.BrandService;
+import scubes.phones_and_accessories.asset.category.controller.CategoryController;
+import scubes.phones_and_accessories.asset.category.controller.CategoryRestController;
+import scubes.phones_and_accessories.asset.color.service.ItemColorService;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
+import scubes.phones_and_accessories.asset.item.entity.enums.ItemStatus;
+import scubes.phones_and_accessories.asset.item.entity.enums.MainCategory;
+import scubes.phones_and_accessories.asset.item.entity.Item;
+import scubes.phones_and_accessories.asset.item.entity.enums.WarrantyPeriod;
+import scubes.phones_and_accessories.asset.item.service.ItemService;
+import scubes.phones_and_accessories.util.interfaces.AbstractController;
+import scubes.phones_and_accessories.util.service.MakeAutoGenerateNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,18 +23,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import scubes.phones_and_accessories.asset.brand.service.BrandService;
-import scubes.phones_and_accessories.asset.category.controller.CategoryController;
-import scubes.phones_and_accessories.asset.color.service.ItemColorService;
-import scubes.phones_and_accessories.asset.item.entity.enums.ItemStatus;
-import scubes.phones_and_accessories.asset.item.entity.enums.MainCategory;
-import scubes.phones_and_accessories.asset.item.entity.Item;
-import scubes.phones_and_accessories.asset.item.service.ItemService;
-import scubes.phones_and_accessories.util.service.MakeAutoGenerateNumberService;
+
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/item")
-public  class ItemController {
+public class ItemController {
     private final ItemService itemService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
     private final ItemColorService itemColorService;
@@ -30,7 +36,8 @@ public  class ItemController {
 
 
     @Autowired
-    public ItemController(ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService, ItemColorService itemColorService, BrandService brandService) {
+    public ItemController(ItemService itemService, MakeAutoGenerateNumberService makeAutoGenerateNumberService,
+                          ItemColorService itemColorService, BrandService brandService) {
         this.itemService = itemService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
         this.itemColorService = itemColorService;
@@ -39,31 +46,30 @@ public  class ItemController {
 
     private String commonThings(Model model, Item item, Boolean addState) {
         model.addAttribute("statuses", ItemStatus.values());
+        model.addAttribute("warrantyPeriods", WarrantyPeriod.values());
         model.addAttribute("item", item);
         model.addAttribute("addStatus", addState);
         model.addAttribute("mainCategories", MainCategory.values());
         model.addAttribute("itemColors", itemColorService.findAll());
         model.addAttribute("brands", brandService.findAll());
         model.addAttribute("urlMainCategory", MvcUriComponentsBuilder
-                .fromMethodName(CategoryController.class, "getCategoryByMainCategory", "")
-                .build()
-                .toString());
+            .fromMethodName(CategoryRestController.class, "getCategoryByMainCategory", "")
+            .build()
+            .toString());
         return "item/addItem";
     }
 
     @GetMapping
     public String findAll(Model model) {
-        model.addAttribute("items", itemService.findAll());
+        model.addAttribute("items", itemService.findAll().stream()
+            .filter(x-> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "item/item";
     }
 
 
-    public String findById(Integer id, Model model) {
-        return null;
-    }
-
     @GetMapping("/add")
-    public String form(Model model) {
+    public String addForm(Model model) {
         return commonThings(model, new Item(), true);
     }
 
@@ -72,23 +78,24 @@ public  class ItemController {
         if (bindingResult.hasErrors()) {
             return commonThings(model, item, true);
         }
-        /*if (item.getId() == null) {
+        if (item.getId() == null) {
             //if there is not item in db
             if (itemService.lastItem() == null) {
                 System.out.println("last item null");
                 //need to generate new one
-                item.setCode("KMC"+makeAutoGenerateNumberService.numberAutoGen(null).toString());
+                item.setItemStatus(ItemStatus.JUSTENTERED);
+                item.setCode("CTMI"+makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
-                System.out.println("last item not null");
                 //if there is item in db need to get that item's code and increase its value
-                String previousCode = itemService.lastItem().getCode().substring(3);
-                item.setCode("KMC"+makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+                String previousCode = itemService.lastItem().getCode().substring(4);
+                item.setCode("CTMI"+makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
             }
-        }*/
+        }
 
         itemService.persist(item);
         return "redirect:/item";
     }
+
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {

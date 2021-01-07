@@ -1,14 +1,15 @@
 package scubes.phones_and_accessories.asset.ledger.service;
 
 
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.stereotype.Service;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import scubes.phones_and_accessories.asset.ledger.dao.LedgerDao;
 import scubes.phones_and_accessories.asset.ledger.entity.Ledger;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -36,12 +37,15 @@ public class LedgerService implements AbstractService< Ledger, Integer> {
 
 
     public Ledger persist(Ledger ledger) {
+        if(ledger.getId()==null){
+            ledger.setLiveDead(LiveDead.ACTIVE);}
         return ledgerDao.save(ledger);
     }
 
-
     public boolean delete(Integer id) {
-        //not applicable
+        Ledger ledger =  ledgerDao.getOne(id);
+        ledger.setLiveDead(LiveDead.STOP);
+        ledgerDao.save(ledger);
         return false;
     }
 
@@ -64,8 +68,12 @@ public class LedgerService implements AbstractService< Ledger, Integer> {
     }
 
     public List<Ledger> findByCreatedAtIsBetween(LocalDateTime startDate, LocalDateTime endDate) {
-        return ledgerDao.findByCreatedAtIsBetween(startDate, endDate);
+        return ledgerDao.findByCreatedAtBetween(startDate, endDate);
     }
+
+  public List<Ledger> findByExpiredDateBetween(LocalDate from, LocalDate to) {
+        return ledgerDao.findByExpiredDateBetween(from,to);
+  }
 
    /* public Ledger findByItem(Item item) {
         return ledgerDao.findByItem(item);

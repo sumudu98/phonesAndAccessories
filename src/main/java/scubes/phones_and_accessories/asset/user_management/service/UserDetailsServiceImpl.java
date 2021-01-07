@@ -1,14 +1,14 @@
 package scubes.phones_and_accessories.asset.user_management.service;
 
+import scubes.phones_and_accessories.asset.user_management.CustomerUserDetails;
+import scubes.phones_and_accessories.asset.user_management.user.dao.UserDao;
+import scubes.phones_and_accessories.asset.user_management.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import scubes.phones_and_accessories.asset.user_management.CustomerUserDetails;
-import scubes.phones_and_accessories.asset.user_management.dao.UserDao;
-import scubes.phones_and_accessories.asset.user_management.entity.User;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userDao.findByUsername(username.toLowerCase());
-       CustomerUserDetails userDetails;
+        CustomerUserDetails userDetails;
         if ( user != null ) {
             userDetails = new CustomerUserDetails();
             userDetails.setUser(user);

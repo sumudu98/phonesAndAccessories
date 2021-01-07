@@ -1,8 +1,8 @@
 package scubes.phones_and_accessories.asset.common_asset.controller;
 
-
-import scubes.phones_and_accessories.asset.user_management.service.UserService;
+import scubes.phones_and_accessories.asset.user_management.user.service.UserService;
 import scubes.phones_and_accessories.util.service.DateTimeAgeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +13,11 @@ public class UiController {
     private final UserService userService;
     private final DateTimeAgeService dateTimeAgeService;
 
+    @Autowired
     public UiController(UserService userService, DateTimeAgeService dateTimeAgeService) {
         this.userService = userService;
         this.dateTimeAgeService = dateTimeAgeService;
     }
-
 
     @GetMapping(value = {"/", "/index"})
     public String index() {
@@ -59,4 +59,8 @@ public class UiController {
         model.addAttribute("err", "There is no user according to the user name. \n Please try again !!");
         return "login/login";
     }
+
+
+
+
 }

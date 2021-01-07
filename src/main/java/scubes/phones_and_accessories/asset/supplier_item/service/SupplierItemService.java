@@ -1,17 +1,18 @@
 package scubes.phones_and_accessories.asset.supplier_item.service;
 
 
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
+import scubes.phones_and_accessories.asset.item.entity.Item;
+import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
+import scubes.phones_and_accessories.asset.supplier_item.dao.SupplierItemDao;
+import scubes.phones_and_accessories.asset.supplier_item.entity.SupplierItem;
+import scubes.phones_and_accessories.asset.supplier_item.entity.enums.ItemSupplierStatus;
+import scubes.phones_and_accessories.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import scubes.phones_and_accessories.asset.item.entity.Item;
-import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
-import scubes.phones_and_accessories.asset.supplier_item.dao.SupplierItemDao;
-import scubes.phones_and_accessories.asset.supplier_item.entity.enums.ItemSupplierStatus;
-import scubes.phones_and_accessories.asset.supplier_item.entity.SupplierItem;
-import scubes.phones_and_accessories.util.interfaces.AbstractService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class SupplierItemService implements AbstractService< SupplierItem, Integ
     public SupplierItem persist(SupplierItem supplierItem) {
         //if item is new supplier should be save as currently buying item
         if ( supplierItem.getId() == null ) {
+            supplierItem.setLiveDead(LiveDead.ACTIVE);
             supplierItem.setItemSupplierStatus(ItemSupplierStatus.CURRENTLY_BUYING);
         }
         //if item buying price was changed (increase/decrease) by supplier,
@@ -56,8 +58,10 @@ public class SupplierItemService implements AbstractService< SupplierItem, Integ
     }
 
     public boolean delete(Integer id) {
-        supplierItemDao.deleteById(id);
-        return true;
+        SupplierItem supplierItem =  supplierItemDao.getOne(id);
+        supplierItem.setLiveDead(LiveDead.STOP);
+        supplierItemDao.save(supplierItem);
+        return false;
     }
 
     public List< SupplierItem > search(SupplierItem supplierItem) {

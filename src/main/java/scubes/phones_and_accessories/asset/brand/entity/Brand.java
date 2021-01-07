@@ -1,6 +1,5 @@
 package scubes.phones_and_accessories.asset.brand.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,12 +19,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Ledger")
+@JsonFilter("Brand")
 public class Brand extends AuditEntity {
     @NotNull
     @Size(min = 1, message = "This name length should be more than one character")
     private String name;
-
     @OneToMany(mappedBy = "brand")
     private List< Item > items;
 }

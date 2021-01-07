@@ -1,13 +1,12 @@
 package scubes.phones_and_accessories.asset.color.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
-import scubes.phones_and_accessories.asset.item.entity.Item;
-import scubes.phones_and_accessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import scubes.phones_and_accessories.asset.item.entity.Item;
+import scubes.phones_and_accessories.util.audit.AuditEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;

@@ -1,6 +1,5 @@
 package scubes.phones_and_accessories.asset.color.service;
 
-
 import scubes.phones_and_accessories.asset.color.dao.ItemColorDao;
 import scubes.phones_and_accessories.asset.color.entity.ItemColor;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;

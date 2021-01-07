@@ -11,10 +11,10 @@ import scubes.phones_and_accessories.asset.employee.entity.Employee;
 import scubes.phones_and_accessories.asset.employee.entity.enums.Designation;
 import scubes.phones_and_accessories.asset.employee.entity.enums.EmployeeStatus;
 import scubes.phones_and_accessories.asset.employee.service.EmployeeService;
-import scubes.phones_and_accessories.asset.user_management.entity.Role;
-import scubes.phones_and_accessories.asset.user_management.entity.User;
-import scubes.phones_and_accessories.asset.user_management.service.RoleService;
-import scubes.phones_and_accessories.asset.user_management.service.UserService;
+import scubes.phones_and_accessories.asset.user_management.role.entity.Role;
+import scubes.phones_and_accessories.asset.user_management.role.service.RoleService;
+import scubes.phones_and_accessories.asset.user_management.user.entity.User;
+import scubes.phones_and_accessories.asset.user_management.user.service.UserService;
 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -50,9 +50,9 @@ public class ApplicationCreateRestController {
         employee.setName("901142122V");
         employee.setMobileOne("0717130052");
         employee.setMobileTwo("0760870052");
-        employee.setTitle((Title) Title.Mr);
+        employee.setTitle(Title.MR);
         employee.setGender(Gender.MALE);
-        employee.setDesignation(Designation.CA);
+        employee.setDesignation(Designation.CASHIER);
         employee.setCivilStatus(CivilStatus.UNMARRIED);
         employee.setEmployeeStatus(EmployeeStatus.WORKING);
         employee.setDateOfBirth(LocalDate.now().minusYears(18));

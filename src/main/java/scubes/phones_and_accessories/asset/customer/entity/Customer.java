@@ -1,12 +1,13 @@
 package scubes.phones_and_accessories.asset.customer.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.common_asset.model.enums.Title;
-import scubes.phones_and_accessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import scubes.phones_and_accessories.util.audit.AuditEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,4 +45,8 @@ public class Customer extends AuditEntity {
 
     @Column(unique = true)
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
 }

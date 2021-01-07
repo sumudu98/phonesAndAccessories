@@ -1,9 +1,6 @@
 package scubes.phones_and_accessories.asset.common_asset.service;
 
 
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import scubes.phones_and_accessories.asset.employee.controller.EmployeeRestController;
 import scubes.phones_and_accessories.asset.item.entity.Item;
 import scubes.phones_and_accessories.asset.item.service.ItemService;
@@ -13,6 +10,9 @@ import scubes.phones_and_accessories.asset.supplier_item.entity.enums.ItemSuppli
 import scubes.phones_and_accessories.asset.supplier_item.entity.SupplierItem;
 import scubes.phones_and_accessories.asset.supplier_item.service.SupplierItemService;
 import scubes.phones_and_accessories.util.service.MakeAutoGenerateNumberService;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class CommonService {
         this.supplierItemService = supplierItemService;
     }
 
-    public List< Supplier > commonSupplierSearch(Supplier supplier) {
+    public List<Supplier> commonSupplierSearch(Supplier supplier) {
         List<Supplier> suppliers;
         if (supplier.getContactOne() != null) {
             String contactNumber = makeAutoGenerateNumberService.phoneNumberLengthValidator(supplier.getContactOne());
@@ -50,10 +50,10 @@ public class CommonService {
         }
         if (supplier.getContactOne() != null) {
             suppliers = suppliers.stream()
-                    .filter(supplier1 ->
-                                    supplier.getContactOne().equals(supplier1.getContactTwo()) ||
-                                            supplier.getContactOne().equals(supplier1.getContactOne()))
-                    .collect(Collectors.toList());
+                .filter(supplier1 ->
+                            supplier.getContactOne().equals(supplier1.getContactTwo()) ||
+                                supplier.getContactOne().equals(supplier1.getContactOne()))
+                .collect(Collectors.toList());
         }
         return suppliers;
     }
@@ -74,8 +74,6 @@ public class CommonService {
 
     public String purchaseOrder(Supplier supplier, Model model, String htmlFileLocation) {
         List<Supplier> suppliers = commonSupplierSearch(supplier);
-
-        System.out.println(" i am here" + suppliers.size());
 
         model.addAttribute("searchAreaShow", false);
         if (suppliers.size() == 1) {
@@ -134,10 +132,11 @@ public class CommonService {
                 .toString());*/
         Object[] arg = {"designation", "id"};
         model.addAttribute("employeeUrl", MvcUriComponentsBuilder
-                .fromMethodName(EmployeeRestController.class, "getEmployeeByWorkingPlace", arg)
-                .build()
-                .toString());
+            .fromMethodName(EmployeeRestController.class, "getEmployeeByWorkingPlace", arg)
+            .build()
+            .toString());
     }
 
 
 }
+

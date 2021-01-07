@@ -1,27 +1,22 @@
 package scubes.phones_and_accessories.asset.purchase_order.controller;
 
 
+import scubes.phones_and_accessories.asset.common_asset.service.CommonService;
+import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderPriority;
+import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
+import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
+import scubes.phones_and_accessories.asset.purchase_order_item.entity.PurchaseOrderItem;
+import scubes.phones_and_accessories.asset.purchase_order.service.PurchaseOrderService;
+import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
+import scubes.phones_and_accessories.asset.supplier.service.SupplierService;
+import scubes.phones_and_accessories.asset.supplier_item.controller.SupplierItemController;
+import scubes.phones_and_accessories.util.service.MakeAutoGenerateNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import scubes.phones_and_accessories.asset.common_asset.service.CommonService;
-import scubes.phones_and_accessories.asset.ledger.dao.LedgerDao;
-import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderPriority;
-import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
-import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
-import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrderItem;
-import scubes.phones_and_accessories.asset.purchase_order.service.PurchaseOrderItemService;
-import scubes.phones_and_accessories.asset.purchase_order.service.PurchaseOrderService;
-import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
-import scubes.phones_and_accessories.asset.supplier.service.SupplierService;
-import scubes.phones_and_accessories.asset.supplier_item.controller.SupplierItemController;
-import scubes.phones_and_accessories.asset.supplier_item.service.SupplierItemService;
-import scubes.phones_and_accessories.util.service.EmailService;
-import scubes.phones_and_accessories.util.service.MakeAutoGenerateNumberService;
-import scubes.phones_and_accessories.util.service.OperatorService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -32,30 +27,17 @@ import java.util.stream.Collectors;
 @RequestMapping( "/purchaseOrder" )
 public class PurchaseOrderController {
     private final PurchaseOrderService purchaseOrderService;
-    private final PurchaseOrderItemService purchaseOrderItemService;
     private final SupplierService supplierService;
     private final CommonService commonService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
-    private final EmailService emailService;
-    private final OperatorService operatorService;
-    private final SupplierItemService supplierItemService;
-    private final LedgerDao ledgerDao;
 
-    public PurchaseOrderController(PurchaseOrderService supplierItemService,
-                                   PurchaseOrderService purchaseOrderService,
-                                   PurchaseOrderItemService purchaseOrderItemService, SupplierService supplierService
-            , CommonService commonService, MakeAutoGenerateNumberService makeAutoGenerateNumberService,
-                                   EmailService emailService, OperatorService operatorService,
-                                   SupplierItemService supplierItemService1, LedgerDao ledgerDao) {
+    public PurchaseOrderController(PurchaseOrderService purchaseOrderService,
+                                   SupplierService supplierService
+        , CommonService commonService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
         this.purchaseOrderService = purchaseOrderService;
-        this.purchaseOrderItemService = purchaseOrderItemService;
         this.supplierService = supplierService;
         this.commonService = commonService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
-        this.emailService = emailService;
-        this.operatorService = operatorService;
-        this.supplierItemService = supplierItemService1;
-        this.ledgerDao = ledgerDao;
     }
 
     @GetMapping
@@ -96,12 +78,12 @@ public class PurchaseOrderController {
         if ( purchaseOrder.getId() == null ) {
             if ( purchaseOrderService.lastPurchaseOrder() == null ) {
                 //need to generate new one
-                purchaseOrder.setCode("JNPO" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+                purchaseOrder.setCode("CTPO" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
                 System.out.println("last customer not null");
                 //if there is customer in db need to get that customer's code and increase its value
                 String previousCode = purchaseOrderService.lastPurchaseOrder().getCode().substring(4);
-                purchaseOrder.setCode("JNPO" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+                purchaseOrder.setCode("CTPO" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
             }
         }
         List< PurchaseOrderItem > purchaseOrderItemList = new ArrayList<>();
@@ -162,7 +144,7 @@ public class PurchaseOrderController {
         return "redirect:/purchaseOrder/all";
     }
 
-    //todo -> need to  manage item price displaying option and amount calculation
+
     @GetMapping( "/supplier/{id}" )
     public String addPriceToSupplierItem(@PathVariable int id, Model model) {
         Supplier supplier = supplierService.findById(id);

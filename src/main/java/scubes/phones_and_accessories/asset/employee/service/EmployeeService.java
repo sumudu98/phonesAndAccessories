@@ -1,15 +1,17 @@
 package scubes.phones_and_accessories.asset.employee.service;
 
+
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
+import scubes.phones_and_accessories.asset.employee.dao.EmployeeDao;
+import scubes.phones_and_accessories.asset.employee.entity.Employee;
+import scubes.phones_and_accessories.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import scubes.phones_and_accessories.asset.employee.dao.EmployeeDao;
-import scubes.phones_and_accessories.asset.employee.entity.Employee;
-import scubes.phones_and_accessories.util.interfaces.AbstractService;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -38,15 +40,23 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
             put = {@CachePut( value = "employee", key = "#employee.id" )} )
     @Transactional
     public Employee persist(Employee employee) {
+        if(employee.getId()==null){
+            employee.setLiveDead(LiveDead.ACTIVE);}
         return employeeDao.save(employee);
     }
 
-    @CacheEvict( allEntries = true )
+    public boolean delete(Integer id) {
+        Employee employee =  employeeDao.getOne(id);
+        employee.setLiveDead(LiveDead.STOP);
+        employeeDao.save(employee);
+        return false;
+    }
+   /* @CacheEvict( allEntries = true )
     public boolean delete(Integer id) {
         employeeDao.deleteById(id);
         return false;
     }
-
+*/
     @Cacheable
     public List< Employee > search(Employee employee) {
         ExampleMatcher matcher = ExampleMatcher
@@ -70,4 +80,6 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
     public Employee findByNic(String nic) {
         return employeeDao.findByNic(nic);
     }
+
+
 }

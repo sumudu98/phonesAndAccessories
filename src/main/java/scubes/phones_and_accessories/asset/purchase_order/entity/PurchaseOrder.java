@@ -1,14 +1,15 @@
 package scubes.phones_and_accessories.asset.purchase_order.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.payment.entity.Payment;
 import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderPriority;
 import scubes.phones_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
+import scubes.phones_and_accessories.asset.purchase_order_item.entity.PurchaseOrderItem;
 import scubes.phones_and_accessories.asset.supplier.entity.Supplier;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
 
@@ -38,6 +39,9 @@ public class PurchaseOrder extends AuditEntity {
 
     @Enumerated(EnumType.STRING)
     private PurchaseOrderStatus purchaseOrderStatus;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
 
     @ManyToOne
     private Supplier supplier;

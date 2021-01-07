@@ -1,6 +1,11 @@
 package scubes.phones_and_accessories.asset.employee.service;
 
 
+import scubes.phones_and_accessories.asset.common_asset.model.FileInfo;
+import scubes.phones_and_accessories.asset.employee.controller.EmployeeController;
+import scubes.phones_and_accessories.asset.employee.dao.EmployeeFilesDao;
+import scubes.phones_and_accessories.asset.employee.entity.Employee;
+import scubes.phones_and_accessories.asset.employee.entity.EmployeeFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -8,11 +13,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import scubes.phones_and_accessories.asset.common_asset.model.FileInfo;
-import scubes.phones_and_accessories.asset.employee.controller.EmployeeController;
-import scubes.phones_and_accessories.asset.employee.dao.EmployeeFilesDao;
-import scubes.phones_and_accessories.asset.employee.entity.Employee;
-import scubes.phones_and_accessories.asset.employee.entity.EmployeeFiles;
 
 import java.util.List;
 
@@ -64,5 +64,9 @@ public class EmployeeFilesService {
             return new FileInfo(filename, employeeFiles.getCreatedAt(), url);
         }
         return null;
+    }
+
+    public EmployeeFiles findByEmployee(Employee employee) {
+        return employeeFilesDao.findByEmployee(employee);
     }
 }

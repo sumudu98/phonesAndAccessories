@@ -1,8 +1,11 @@
 package scubes.phones_and_accessories.asset.good_received_note.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.good_received_note.entity.enums.GoodReceivedNoteState;
 import scubes.phones_and_accessories.asset.ledger.entity.Ledger;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
@@ -17,10 +20,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter( "GoodReceivedNote" )
-@ToString
+@JsonFilter("GoodReceivedNote")
 public class GoodReceivedNote extends AuditEntity {
-
     private String remarks;
 
     @Column( precision = 10, scale = 2 )
@@ -28,6 +29,9 @@ public class GoodReceivedNote extends AuditEntity {
 
     @Enumerated( EnumType.STRING )
     private GoodReceivedNoteState goodReceivedNoteState;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
 
     @ManyToOne
     private PurchaseOrder purchaseOrder;

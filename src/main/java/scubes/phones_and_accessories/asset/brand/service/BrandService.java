@@ -1,6 +1,5 @@
 package scubes.phones_and_accessories.asset.brand.service;
 
-
 import scubes.phones_and_accessories.asset.brand.dao.BrandDao;
 import scubes.phones_and_accessories.asset.brand.entity.Brand;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;
@@ -22,29 +21,29 @@ public class BrandService implements AbstractService<Brand, Integer> {
         this.brandDao = brandDao;
     }
 
-
+    @Override
     public List<Brand> findAll() {
         return brandDao.findAll();
     }
 
-
+    @Override
     public Brand findById(Integer id) {
         return brandDao.getOne(id);
     }
 
-
+    @Override
     public Brand persist(Brand brand) {
         return brandDao.save(brand);
     }
 
-
+    @Override
     public boolean delete(Integer id) {
         brandDao.deleteById(id);
         //not applicable
         return false;
     }
 
-
+    @Override
     public List<Brand> search(Brand brand) {
         ExampleMatcher matcher = ExampleMatcher
                 .matching()

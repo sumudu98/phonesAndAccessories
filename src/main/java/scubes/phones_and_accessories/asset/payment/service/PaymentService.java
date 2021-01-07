@@ -1,12 +1,14 @@
 package scubes.phones_and_accessories.asset.payment.service;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.stereotype.Service;
+
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.payment.dao.PaymentDao;
 import scubes.phones_and_accessories.asset.payment.entity.Payment;
 import scubes.phones_and_accessories.asset.purchase_order.entity.PurchaseOrder;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -27,13 +29,17 @@ public class PaymentService implements AbstractService< Payment, Integer > {
     }
 
     public Payment persist(Payment payment) {
+        if(payment.getId()==null){
+            payment.setLiveDead(LiveDead.ACTIVE);}
         return paymentDao.save(payment);
     }
 
     public boolean delete(Integer id) {
+        Payment payment =  paymentDao.getOne(id);
+        payment.setLiveDead(LiveDead.STOP);
+        paymentDao.save(payment);
         return false;
     }
-
     public List< Payment > search(Payment payment) {
         ExampleMatcher matcher = ExampleMatcher
                 .matching()

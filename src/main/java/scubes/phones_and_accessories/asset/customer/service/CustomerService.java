@@ -1,7 +1,7 @@
 package scubes.phones_and_accessories.asset.customer.service;
 
 
-
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.customer.dao.CustomerDao;
 import scubes.phones_and_accessories.asset.customer.entity.Customer;
 import scubes.phones_and_accessories.util.interfaces.AbstractService;
@@ -10,10 +10,10 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import java.util.List;
 
 @Service
-
 @CacheConfig( cacheNames = "customer" )
 public class CustomerService implements AbstractService<Customer, Integer> {
     private final CustomerDao customerDao;
@@ -32,11 +32,16 @@ public class CustomerService implements AbstractService<Customer, Integer> {
     }
 
     public Customer persist(Customer customer) {
+        if ( customer.getId() == null ) {
+            customer.setLiveDead(LiveDead.ACTIVE);
+        }
         return customerDao.save(customer);
     }
 
     public boolean delete(Integer id) {
-        customerDao.deleteById(id);
+        Customer customer = customerDao.getOne(id);
+        customer.setLiveDead(LiveDead.STOP);
+        customerDao.save(customer);
         return false;
     }
 
@@ -52,5 +57,4 @@ public class CustomerService implements AbstractService<Customer, Integer> {
     public Customer lastCustomer(){
         return customerDao.findFirstByOrderByIdDesc();
     }
-
 }

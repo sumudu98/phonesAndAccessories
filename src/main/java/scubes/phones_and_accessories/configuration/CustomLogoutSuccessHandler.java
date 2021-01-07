@@ -5,11 +5,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.stereotype.Component;
-import scubes.phones_and_accessories.asset.user_management.entity.enums.UserSessionLogStatus;
-import scubes.phones_and_accessories.asset.user_management.entity.User;
-import scubes.phones_and_accessories.asset.user_management.entity.UserSessionLog;
-import scubes.phones_and_accessories.asset.user_management.service.UserService;
-import scubes.phones_and_accessories.asset.user_management.service.UserSessionLogService;
+import scubes.phones_and_accessories.asset.user_management.user.entity.User;
+import scubes.phones_and_accessories.asset.user_management.user.service.UserService;
+import scubes.phones_and_accessories.asset.user_management.user_session_log.entity.UserSessionLog;
+import scubes.phones_and_accessories.asset.user_management.user_session_log.entity.enums.UserSessionLogStatus;
+import scubes.phones_and_accessories.asset.user_management.user_session_log.service.UserSessionLogService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

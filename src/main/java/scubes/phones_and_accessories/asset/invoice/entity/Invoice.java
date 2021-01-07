@@ -7,11 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import scubes.phones_and_accessories.asset.common_asset.model.enums.LiveDead;
 import scubes.phones_and_accessories.asset.customer.entity.Customer;
 import scubes.phones_and_accessories.asset.discount_ratio.entity.DiscountRatio;
 import scubes.phones_and_accessories.asset.invoice.entity.enums.InvoicePrintOrNot;
 import scubes.phones_and_accessories.asset.invoice.entity.enums.InvoiceValidOrNot;
 import scubes.phones_and_accessories.asset.invoice.entity.enums.PaymentMethod;
+import scubes.phones_and_accessories.asset.invoice_item.entity.InvoiceLedger;
 import scubes.phones_and_accessories.util.audit.AuditEntity;
 
 import javax.persistence.*;
@@ -60,6 +62,9 @@ public class Invoice extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private InvoiceValidOrNot invoiceValidOrNot;
 
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
     @ManyToOne
     private Customer customer;
 
@@ -67,7 +72,7 @@ public class Invoice extends AuditEntity {
     private DiscountRatio discountRatio;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "invoice")
-    private List< InvoiceItem > invoiceItemQuantities;
+    private List< InvoiceLedger > invoiceLedgers;
 
 
 }
