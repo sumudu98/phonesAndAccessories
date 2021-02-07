@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>supplier</title>
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed bg-info">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 <div id="layoutSidenav">
     <div th:replace="~{fragments/sideNav :: sideNavFragment}">
@@ -13,15 +13,18 @@
         <main>
             <!--heading Area-->
             <div class="container-fluid">
-                <h1 class="mt-4">Suppliers</h1>
-                <div class="row formManagement border-info mb-4 mt-4">
-                    <!--New Supplier Button-->
-                    <div class="col">
-                        <a class="btn btn-outline-success btn-sm" href="/supplier/add" id="button1" tabindex="1">
-                            <i class="fa fa-plus" style="font-size: 12px;"></i>&nbsp;&nbsp;Add Supplier</a>&nbsp;
+                <div class="container mt-4">
+                    <div class="row">
+                        <div  class="col">
+                            <h3>Suppliers</h3>
+                        </div>
+                        <!--New Supplier Button-->
+                        <div class="col float-right" align="right" >
+                            <a class="btn btn-success btn-sm" href="/supplier/add" id="button1" tabindex="1">
+                                <i class="fa fa-plus" style="font-size: 12px;"></i>&nbsp;&nbsp;Add Supplier</a>&nbsp;
+                        </div>
                     </div>
                 </div>
-
 
                     <!--Suppliers List-->
                     <div class="card mb-4">
@@ -34,7 +37,7 @@
                         <div class="card-body">
                             <div class="table-responsive-md" id="supplierListPresent" data-th-fragment="supplierFragment"
                                  data-th-if="${not #lists.isEmpty(suppliers)}">
-                                <table class="table table-bordered" id="myTable">
+                                <table class="table table-striped" id="myTable">
                                     <thead class="text-center">
                                     <tr>
                                         <th> Index</th>

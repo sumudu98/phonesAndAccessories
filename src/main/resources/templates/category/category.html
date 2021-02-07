@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>category</title>
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed bg-dark">
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
 <div id="layoutSidenav">
     <div th:replace="~{fragments/sideNav :: sideNavFragment}">
@@ -13,11 +13,11 @@
         <main>
             <!--Heading Area-->
             <div class="container-fluid ">
-                <h1 class="mt-4">Category Management</h1>
+                <h1 class="mt-4 text-light">Category Management</h1>
                 <div class="row formManagement border-info mb-4 mt-4">
                     <!--New Color Button-->
                     <div class="col">
-                        <a class="btn btn-outline-success btn-sm" href="/category/add" tabindex="1">
+                        <a class="btn btn-success btn-sm" href="/category/add" tabindex="1">
                             <i class="fas fa-plus" style="font-size: 12px"></i>&nbsp;&nbsp;New
                         </a>
                     </div>
@@ -32,7 +32,7 @@
                     <!--Table view-->
                     <div class="card-body">
                         <div class="table-responsive-md" id="categoryListPresent" th:if="${not #lists.isEmpty(categorys)}">
-                            <table class="table table-bordered" id="myTable">
+                            <table class="table table-striped" id="myTable">
                                 <thead>
                                 <tr>
                                     <th> Index</th>
