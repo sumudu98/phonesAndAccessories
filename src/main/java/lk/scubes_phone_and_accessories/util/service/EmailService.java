@@ -28,7 +28,7 @@ public class EmailService {
 
     try {
       mailMessage.setTo(receiverEmail);
-      mailMessage.setFrom("-(Samarasinghe Super - Kadawatha - (not reply))");
+      mailMessage.setFrom("-(Phone- Kadawatha - (not reply))");
       mailMessage.setSubject(subject);
       mailMessage.setText(message);
 
