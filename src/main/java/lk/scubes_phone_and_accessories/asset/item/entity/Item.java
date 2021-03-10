@@ -7,6 +7,7 @@ import lk.scubes_phone_and_accessories.asset.brand.entity.Brand;
 import lk.scubes_phone_and_accessories.asset.category.entity.Category;
 import lk.scubes_phone_and_accessories.asset.common_asset.model.enums.LiveDead;
 import lk.scubes_phone_and_accessories.asset.item.entity.enums.ItemStatus;
+import lk.scubes_phone_and_accessories.asset.item.entity.enums.WarrantyPeriod;
 import lk.scubes_phone_and_accessories.asset.item_color.entity.ItemColor;
 import lk.scubes_phone_and_accessories.asset.ledger.entity.Ledger;
 import lk.scubes_phone_and_accessories.asset.purchase_order_item.entity.PurchaseOrderItem;
@@ -18,7 +19,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
@@ -34,7 +34,6 @@ public class Item extends AuditEntity {
     @Size( min = 5, message = "Your name cannot be accepted" )
     private String name;
 
-    @NotEmpty
     private String rop;
 
     @Column( unique = true )
@@ -48,6 +47,9 @@ public class Item extends AuditEntity {
 
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;
+
+    @Enumerated(EnumType.STRING)
+    private WarrantyPeriod warrantyPeriod;
 
     @ManyToOne
     private Category category;

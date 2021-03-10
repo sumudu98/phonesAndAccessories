@@ -12,24 +12,27 @@
     <div id="layoutSidenav_content">
         <main>
             <!--heading Area-->
-            <div class="container-fluid ">
-                <div class="row formManagement border-info mb-4 mt-4">
+            <div class="container-fluid bg-dark form-Border">
+                <div class="row text-center formManagement border-info">
                     <!--View List Button-->
                     <div class="col">
-                        <a href="/item" class="btn btn-outline-primary btn-sm" tabindex="2">
-                            <i class="fa fa-list" style="font-size: 12px"></i>&nbsp; View List
+                        <a href="/item" class="btn btn-primary" tabindex="2">
+                            <i class="fa fa-list" style="font-size: 20px"></i>&nbsp; View List
                         </a>
                     </div>
                     <!--Item Name-->
                     <div class="col">
-                        <h5 class="text text-right">
-                            <p th:text="${itemDetail.name}"></p>
-                        </h5>
+                        <h2 class="text-white text-center">
+                            <strong>
+                                <p th:text="${itemDetail.name}"></p>
+                            </strong>
+                        </h2>
                     </div>
+
                 </div>
             </div>
             <!--details-->
-            <div th:fragment="itemDetailsFragment" class="container-fluid formBorder">
+            <div th:fragment="itemDetailsFragment" class="container-fluid bg-info formBorder">
                 <div class="col-sm-12 flex-column ">
                     <div class="row">
                         <!--Left Side-->
@@ -145,7 +148,8 @@
                 </div>
             </div>
         </main>
-        <div  th:replace="~{fragments/footer :: footerFragment}"></div>
+        <!--footer include-->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
         <!--script include-->
         <script th:replace="~{fragments/script :: scriptFragment}"></script>
     </div>

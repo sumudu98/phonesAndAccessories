@@ -1,6 +1,7 @@
 package lk.scubes_phone_and_accessories.asset.invoice.controller;
 
 
+import lk.scubes_phone_and_accessories.asset.common_asset.model.TwoDate;
 import lk.scubes_phone_and_accessories.asset.customer.service.CustomerService;
 import lk.scubes_phone_and_accessories.asset.discount_ratio.service.DiscountRatioService;
 import lk.scubes_phone_and_accessories.asset.invoice.entity.Invoice;
@@ -8,8 +9,10 @@ import lk.scubes_phone_and_accessories.asset.invoice.entity.enums.InvoicePrintOr
 import lk.scubes_phone_and_accessories.asset.invoice.entity.enums.InvoiceValidOrNot;
 import lk.scubes_phone_and_accessories.asset.invoice.entity.enums.PaymentMethod;
 import lk.scubes_phone_and_accessories.asset.invoice.service.InvoiceService;
+import lk.scubes_phone_and_accessories.asset.invoice_ledger.entity.InvoiceLedger;
 import lk.scubes_phone_and_accessories.asset.item.service.ItemService;
 import lk.scubes_phone_and_accessories.asset.ledger.controller.LedgerController;
+import lk.scubes_phone_and_accessories.asset.ledger.entity.Ledger;
 import lk.scubes_phone_and_accessories.asset.ledger.service.LedgerService;
 import lk.scubes_phone_and_accessories.util.service.DateTimeAgeService;
 import lk.scubes_phone_and_accessories.util.service.MakeAutoGenerateNumberService;
@@ -50,18 +53,20 @@ public class InvoiceController {
   @GetMapping
   public String invoice(Model model) {
     model.addAttribute("invoices",
-            invoiceService.findAll());
-    /*invoiceService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(dateTimeAgeService.getPastDateByMonth(3)), dateTimeAgeService.dateTimeToLocalDateEndInDay(LocalDate.now())));*/
+                       invoiceService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(dateTimeAgeService
+                                                                                                                    .getPastDateByMonth(3)), dateTimeAgeService.dateTimeToLocalDateEndInDay(LocalDate.now())));
     model.addAttribute("firstInvoiceMessage", true);
+    model.addAttribute("messageView", false);
     return "invoice/invoice";
   }
 
-  @GetMapping( "/search" )
-  public String invoiceSearch(@RequestAttribute( "startDate" ) LocalDate startDate,
-                              @RequestAttribute( "endDate" ) LocalDate endDate, Model model) {
+  @PostMapping( "/search" )
+  public String invoiceSearch(@ModelAttribute TwoDate twoDate, Model model) {
     model.addAttribute("invoices",
-            invoiceService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate), dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate)));
+                       invoiceService.findByCreatedAtIsBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate())));
     model.addAttribute("firstInvoiceMessage", true);
+    model.addAttribute("message", "This view is belongs to following date range start date "+twoDate.getStartDate() +" to "+ twoDate.getEndDate());
+    model.addAttribute("messageView", true);
     return "invoice/invoice";
   }
 
@@ -72,15 +77,15 @@ public class InvoiceController {
     model.addAttribute("customers", customerService.findAll());
     model.addAttribute("discountRatios", discountRatioService.findAll());
     model.addAttribute("ledgerItemURL", MvcUriComponentsBuilder
-            .fromMethodName(LedgerController.class, "findId", "")
-            .build()
-            .toString());
+        .fromMethodName(LedgerController.class, "findId", "")
+        .build()
+        .toString());
     System.out.println("Sixe" + ledgerService.findAll().size());
     //send not expired and not zero quantity
     model.addAttribute("ledgers", ledgerService.findAll()
-            .stream()
-            .filter(x -> 0 < Integer.parseInt(x.getQuantity()) && x.getExpiredDate().isAfter(LocalDate.now()))
-            .collect(Collectors.toList()));
+        .stream()
+        .filter(x -> 0 < Integer.parseInt(x.getQuantity()))
+        .collect(Collectors.toList()));
     return "invoice/addInvoice";
   }
 
@@ -105,16 +110,29 @@ public class InvoiceController {
     if ( invoice.getId() == null ) {
       if ( invoiceService.findByLastInvoice() == null ) {
         //need to generate new one
-        invoice.setCode("JNSI" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+        invoice.setCode("CTSI" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
       } else {
         System.out.println("last customer not null");
         //if there is customer in db need to get that customer's code and increase its value
         String previousCode = invoiceService.findByLastInvoice().getCode().substring(4);
-        invoice.setCode("JNSI" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+        invoice.setCode("CTSI" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
       }
     }
+    invoice.getInvoiceLedgers().forEach(x -> x.setInvoice(invoice));
+
     invoice.setInvoiceValidOrNot(InvoiceValidOrNot.VALID);
-    invoiceService.persist(invoice);
+
+    Invoice saveInvoice = invoiceService.persist(invoice);
+
+    for ( InvoiceLedger invoiceLedger : saveInvoice.getInvoiceLedgers() ) {
+      Ledger ledger = ledgerService.findById(invoiceLedger.getLedger().getId());
+      String quantity = invoiceLedger.getQuantity();
+      int availableQuantity = Integer.parseInt(ledger.getQuantity());
+      int sellQuantity = Integer.parseInt(quantity);
+      ledger.setQuantity(String.valueOf(availableQuantity - sellQuantity));
+      ledgerService.persist(ledger);
+    }
+
     //todo - if invoice is required needed to send pdf to backend
 
     return "redirect:/invoice/add";
