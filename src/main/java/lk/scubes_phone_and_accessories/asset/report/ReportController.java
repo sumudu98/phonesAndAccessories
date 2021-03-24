@@ -4,6 +4,7 @@ import lk.scubes_phone_and_accessories.asset.common_asset.model.NameCount;
 import lk.scubes_phone_and_accessories.asset.common_asset.model.ParameterCount;
 import lk.scubes_phone_and_accessories.asset.common_asset.model.TwoDate;
 import lk.scubes_phone_and_accessories.asset.employee.entity.Employee;
+import lk.scubes_phone_and_accessories.asset.employee.service.EmployeeService;
 import lk.scubes_phone_and_accessories.asset.invoice.entity.Invoice;
 import lk.scubes_phone_and_accessories.asset.invoice.entity.enums.PaymentMethod;
 import lk.scubes_phone_and_accessories.asset.invoice.service.InvoiceService;
@@ -41,14 +42,19 @@ public class ReportController {
   private final DateTimeAgeService dateTimeAgeService;
   private final UserService userService;
   private final InvoiceLedgerService invoiceLedgerService;
+  private final EmployeeService employeeService;
 
-  public ReportController(PaymentService paymentService, InvoiceService invoiceService, OperatorService operatorService, DateTimeAgeService dateTimeAgeService, UserService userService, InvoiceLedgerService invoiceLedgerService) {
+  public ReportController(PaymentService paymentService, InvoiceService invoiceService,
+                          OperatorService operatorService, DateTimeAgeService dateTimeAgeService,
+                          UserService userService, InvoiceLedgerService invoiceLedgerService,
+                          EmployeeService employeeService) {
     this.paymentService = paymentService;
     this.invoiceService = invoiceService;
     this.operatorService = operatorService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.userService = userService;
     this.invoiceLedgerService = invoiceLedgerService;
+    this.employeeService = employeeService;
   }
 
   private String commonAll(List< Payment > payments, List< Invoice > invoices, Model model, String message,
@@ -91,6 +97,7 @@ public class ReportController {
                      invoiceService.findByCreatedAtIsBetween(startDateTime, endDateTime), model, message,
                      startDateTime, endDateTime);
   }
+
   private void commonInvoices(List< Invoice > invoices, Model model) {
     // invoice count
     int invoiceTotalCount = invoices.size();
@@ -204,10 +211,10 @@ public class ReportController {
 //name, count, total
     HashSet< String > createdByAll = new HashSet<>();
     invoices.forEach(x -> createdByAll.add(x.getCreatedBy()));
-
+    System.out.println(" size "+ createdByAll.size());
     createdByAll.forEach(x -> {
       NameCount nameCount = new NameCount();
-      Employee employee = userService.findByUserName(x).getEmployee();
+      Employee employee = employeeService.findById(userService.findByUserName(x).getEmployee().getId());
       nameCount.setName(employee.getTitle().getTitle() + " " + employee.getName());
       AtomicReference< BigDecimal > cashierTotalCount = new AtomicReference<>(BigDecimal.ZERO);
       List< Invoice > cashierInvoice =
@@ -253,7 +260,7 @@ public class ReportController {
 
     createdByAllPayment.forEach(x -> {
       NameCount nameCount = new NameCount();
-      Employee employee = userService.findByUserName(x).getEmployee();
+      Employee employee = employeeService.findById(userService.findByUserName(x).getEmployee().getId());
       nameCount.setName(employee.getTitle().getTitle() + " " + employee.getName());
       AtomicReference< BigDecimal > userTotalCount = new AtomicReference<>(BigDecimal.ZERO);
       List< Payment > paymentUser =

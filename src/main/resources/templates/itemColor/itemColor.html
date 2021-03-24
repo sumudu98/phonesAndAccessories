@@ -58,16 +58,19 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="itemColor, rowCount : ${itemColors}">
-                                    <th th:text="${rowCount.count}"></th>
-                                    <th th:text="${itemColor.name}"></th>
-                                    <th>
+                                    <td th:text="${rowCount.count}"></td>
+                                    <td th:text="${itemColor.name}"></td>
+                                    <td>
                                         <a id="itemColorEdit" th:href="${'/itemColor/edit/' + itemColor.id}" class="btn btn-outline-success btn-sm"><i
                                                 class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
-                                        <a id="itemColorRemove" th:href="${'/itemColor/delete/' + itemColor.id}" class="btn btn-outline-danger btn-sm">
-                                            <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
-                                                class="fa fa-trash" style="font-size: 15px"></i>
-                                            Delete</a>
-                                    </th>
+
+                                        <button class="btn btn-outline-danger btn-sm"   data-th-id="${'/itemColor/delete/' + itemColor.id}"
+                                                onclick="confirmDelete(this)" >
+                                            <!-- data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" -->
+                                            <i class="fa fa-trash" style="font-size: 15px" ></i >
+                                            Delete
+                                        </button >
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -85,7 +88,26 @@
     </div>
 </div>
 
+<script >
 
+
+    /*active boostrap alert - start*/
+    $(".alert").alert();
+
+    /*active boostrap alert - end*/
+
+    function confirmDelete(obj) {
+        swal("Are you sure to delete this?", {
+            dangerMode: true,
+            buttons: true,
+        }).then((x) => {
+            if (x) {
+                self.location = location.protocol + "//" + location.host + obj.getAttribute('id');
+            }
+        });
+    }
+
+</script >
 
 </body>
 </html>

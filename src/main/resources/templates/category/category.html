@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
+<head  data-th-replace="~{fragments/header :: headerFragment}">
     <meta charset="UTF-8">
     <title>category</title>
 </head>
-<body class="sb-nav-fixed bg-dark">
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<body class="sb-nav-fixed">
+<nav  data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 <div id="layoutSidenav">
-    <div th:replace="~{fragments/sideNav :: sideNavFragment}">
+    <div  data-th-replace="~{fragments/sideNav :: sideNavFragment}">
     </div>
     <div id="layoutSidenav_content">
         <main>
             <!--Heading Area-->
             <div class="container-fluid ">
-                <h1 class="mt-4 text-light">Category Management</h1>
+                <h1 class="mt-4">Category Management</h1>
                 <div class="row formManagement border-info mb-4 mt-4">
                     <!--New Color Button-->
                     <div class="col">
-                        <a class="btn btn-success btn-sm" href="/category/add" tabindex="1">
+                        <a class="btn btn-outline-success btn-sm" href="/category/add" tabindex="1">
                             <i class="fas fa-plus" style="font-size: 12px"></i>&nbsp;&nbsp;New
                         </a>
                     </div>
@@ -31,8 +31,8 @@
                     </div>
                     <!--Table view-->
                     <div class="card-body">
-                        <div class="table-responsive-md" id="categoryListPresent" th:if="${not #lists.isEmpty(categorys)}">
-                            <table class="table table-striped" id="myTable">
+                        <div class="table-responsive-md" id="categoryListPresent"  data-th-if="${not #lists.isEmpty(categorys)}">
+                            <table class="table table-bordered" id="myTable">
                                 <thead>
                                 <tr>
                                     <th> Index</th>
@@ -42,25 +42,29 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="category, rowCount : ${categorys}">
-                                    <th th:text="${rowCount.count}"></th>
-                                    <th th:text="${category.mainCategory.mainCategory}"></th>
-                                    <th th:text="${category.name}"></th>
-                                    <th>
+                                <tr   data-th-each="category, rowCount : ${categorys}">
+                                    <td  data-th-text="${rowCount.count}"></td>
+                                    <td  data-th-text="${category.mainCategory.mainCategory}"></td>
+                                    <td  data-th-text="${category.name}"></td>
+                                    <td>
 
-                                        <a id="categoryView" th:href="${'/category/' + category.id}" class="btn btn-outline-primary btn-sm"><i class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
-                                        <a id="categoryEdit" th:href="${'/category/edit/' + category.id}" class="btn btn-outline-success btn-sm"><i class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
-                                        <a id="categoryRemove" th:href="${'/category/delete/' + category.id}" class="btn btn-outline-danger btn-sm">
-                                            <!-- th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"--> <i class="fa fa-trash" style="font-size: 15px"></i> Delete</a>
+                                        <a id="categoryView"  data-th-href="${'/category/' + category.id}" class="btn btn-outline-primary btn-sm"><i class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
+                                        <a id="categoryEdit"  data-th-href="${'/category/edit/' + category.id}" class="btn btn-outline-success btn-sm"><i class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
 
-                                    </th>
+                                        <button class="btn btn-outline-danger btn-sm" data-th-id="${'/category/delete/' + category.id}"
+                                                onclick="confirmDelete(this)" >
+                                            <!-- data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" -->
+                                            <i class="fa fa-trash" style="font-size: 15px" ></i >
+                                            Delete
+                                        </button >
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <!--Error-->
-                    <div class="row" th:if="${ #lists.isEmpty(categorys)}">
+                    <div class="row"  data-th-if="${ #lists.isEmpty(categorys)}">
                         <div class="col-sm-12">
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -82,10 +86,31 @@
         <main>
 
         <!--footer include-->
-        <div  th:replace="~{fragments/footer :: footerFragment}"></div>
+        <div   data-th-replace="~{fragments/footer :: footerFragment}"></div>
         <!--script include-->
-        <script th:replace="~{fragments/script :: scriptFragment}"></script>
+        <div  data-th-replace="~{fragments/script :: scriptFragment}"></div>
     </div>
 </div>
+<script >
+
+
+    /*active boostrap alert - start*/
+    $(".alert").alert();
+
+    /*active boostrap alert - end*/
+
+    function confirmDelete(obj) {
+        swal("Are you sure to delete this?", {
+            dangerMode: true,
+            buttons: true,
+        }).then((x) => {
+            if (x) {
+                self.location = location.protocol + "//" + location.host + obj.getAttribute('id');
+            }
+        });
+    }
+
+</script >
+
 </body>
 </html>
