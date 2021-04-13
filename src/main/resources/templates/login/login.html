@@ -29,6 +29,18 @@
             </div>
             <br>
             <button class="btnloging  " type="submit">LOGIN</button>
+            </br>
+            </br>
+            <div class="container-fluid " data-th-if="${param.error}"><p
+                    class="bg-white text-capitalize text-danger text-lg-center">Invalid username or
+                password. </p></div>
+            <div class="container-fluid "><p id="errorMessage" data-th-text="${err}"
+                                             class="bg-white text-capitalize text-danger text-lg-center"></p>
+            </div>
+
+
+
+
         </form>
     </div>
 </div>
