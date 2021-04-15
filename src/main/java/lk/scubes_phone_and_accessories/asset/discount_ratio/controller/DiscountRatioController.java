@@ -25,8 +25,8 @@ public class DiscountRatioController {
     @GetMapping
     public String findAll(Model model) {
         model.addAttribute("discountRatios", discountRatioService.findAll().stream()
-                .filter(x-> LiveDead.ACTIVE.equals(x.getLiveDead()))
-                .collect(Collectors.toList()));
+            .filter(x-> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "discountRatio/discountRatio";
     }
 

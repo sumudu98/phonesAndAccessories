@@ -6,8 +6,11 @@
 </head>
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
+<div id="layoutSidenav">
+    <div data-th-replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
             <!--heading Area-->
             <div class="container-fluid bg-dark form-Border">
                 <div class="row text-center formManagement border-info">
@@ -144,11 +147,12 @@
                     </div>
                 </div>
             </div>
-
+        </main>
         <!--footer include-->
         <footer data-th-replace="~{fragments/footer :: footerFragment}"></footer>
         <!--script include-->
         <script data-th-replace="~{fragments/script :: scriptFragment}"></script>
-
+    </div>
+</div>
 </body>
 </html>

@@ -6,8 +6,11 @@
 </head>
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
+<div id="layoutSidenav">
+    <div  data-th-replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
             <!--heading Area-->
             <div class="container-fluid">
                 <h1 class="mt-4">Suppliers</h1>
@@ -99,11 +102,12 @@
                     </div>
 
             </div>
-
+        </main>
         <!--footer include-->
         <div data-th-replace="~{fragments/footer :: footerFragment}"></div>
         <!--script include-->
         <div data-th-replace="~{fragments/script :: scriptFragment}"></div>
-
+    </div>
+</div>
 </body>
 </html>

@@ -6,11 +6,11 @@
 </head>
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
-
-
-
+<div id="layoutSidenav">
+    <div  data-th-replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
             <!--Heading Area-->
             <div class="container-fluid ">
                 <div class="row formManagement border-info mb-4 mt-4">
@@ -119,7 +119,7 @@
                                 <!--Address-->
                                 <div class="col-md-12">
                                     <label class="control-label" for="address">Address :</label>
-                                    <textarea id="address" required data-th-field="*{address}" class="form-control" tabindex="7" rows="3" style="font-size: medium"></textarea>
+                                    <textarea id="address"  data-th-field="*{address}" class="form-control" tabindex="7" rows="3" style="font-size: medium"></textarea>
                                     <span class="error"   data-th-errors="*{address}"
                                           data-th-if="${#fields.hasErrors('address')}" id="addressError">Error Address</span>
                                 </div>
@@ -151,10 +151,11 @@
                      </div>
                 </div>
             </div>
-
+        </main>
         <div data-th-replace="~{fragments/footer :: footerFragment}"></div>
         <!--script include-->
         <div  data-th-replace="~{fragments/script :: scriptFragment}"></div>
-
+    </div>
+</div>
 </body>
 </html>

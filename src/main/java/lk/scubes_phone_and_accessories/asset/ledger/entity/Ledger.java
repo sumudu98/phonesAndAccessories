@@ -7,6 +7,7 @@ import lk.scubes_phone_and_accessories.asset.common_asset.model.enums.LiveDead;
 import lk.scubes_phone_and_accessories.asset.good_received_note.entity.GoodReceivedNote;
 import lk.scubes_phone_and_accessories.asset.invoice_ledger.entity.InvoiceLedger;
 import lk.scubes_phone_and_accessories.asset.item.entity.Item;
+import lk.scubes_phone_and_accessories.asset.item.entity.enums.MainCategory;
 import lk.scubes_phone_and_accessories.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,18 +32,15 @@ public class Ledger extends AuditEntity {
 
     @Column( nullable = false, precision = 10, scale = 2 )
     private BigDecimal sellPrice;
-/*
-    @DateTimeFormat( pattern = "yyyy-MM-dd" )
-    private LocalDate manufactureDate;
-
-    @DateTimeFormat( pattern = "yyyy-MM-dd" )
-    private LocalDate expiredDate;*/
 
     @Enumerated( EnumType.STRING)
     private LiveDead liveDead;
 
     @ManyToOne(fetch=FetchType.EAGER)
     private Item item;
+
+    @Enumerated( EnumType.STRING)
+    private MainCategory mainCategory;
 
     @ManyToOne
     @JsonIgnore

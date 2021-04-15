@@ -7,8 +7,11 @@
 </head>
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
+<div id="layoutSidenav">
+    <div  data-th-replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
             <div class="container-fluid">
                 <h2 class="mt-4 mb-4">Good Receiving Note Management</h2>
                 <!--Table view-->
@@ -74,9 +77,11 @@
                     </script>
                 </div>
             </div>
-
+        </main>
 
         <div data-th-replace="~{fragments/footer :: footerFragment}"></div>
         <div data-th-replace="~{fragments/script :: scriptFragment}"></div>
+    </div>
+</div>
 </body>
 </html>

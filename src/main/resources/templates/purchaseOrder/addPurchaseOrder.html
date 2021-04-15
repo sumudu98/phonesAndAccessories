@@ -8,8 +8,11 @@
 <!--Multi CSS-->
 <link data-th-href="@{/css/multi.css}" media="all" rel="stylesheet" type="text/css"/>
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
+<div id="layoutSidenav">
+    <div data-th-replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
             <!--Heading Area -->
             <div class="container-fluid ">
                 <div class="row formManagement border-info mb-4 mt-4">
@@ -165,7 +168,9 @@
             <input data-th-if="${supplierDetailShow==false}" data-th-value="${purchaseOrderItemUrl}" hidden
                    id="purchaseOrderItemUrl" type="text">
             <!--Supplier Item add - end-->
-
+        </main>
+    </div>
+</div>
 <div data-th-replace="~{fragments/footer :: footerFragment}"></div>
 <dev data-th-replace="~{fragments/script :: scriptFragment}"></dev>
 <script>

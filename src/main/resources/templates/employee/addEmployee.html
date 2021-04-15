@@ -5,8 +5,10 @@
 </head >
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-</br>
-</br>
+<div id="layoutSidenav">
+  <div  data-th-replace="~{fragments/sideNav :: sideNavFragment}"></div>
+  <div id="layoutSidenav_content">
+      <main>
         <!--Heading Area-->
         <div class="container-fluid">
             <div class="row formManagement border-info mb-4 mt-4" >
@@ -105,8 +107,7 @@
                   <!--Nic-->
                   <div class="col-md-2" >
                     <label for="nic"><small>NIC No</small></label>
-
-                    <input id="nic" pattern="([0-9]{9}[|X|V]|[0-9]{12})" title="This nic is not accepted" data-th-field="*{nic}" class="form-control form-control-sm" tabindex="6" type="text"
+                    <input id="nic" data-th-field="*{nic}" class="form-control form-control-sm" tabindex="6" type="text"
                            maxlength="12"
                            minlength="10" required />
                     <span class="error" id="nicError" data-th-errors="*{nic}"
@@ -303,7 +304,7 @@
           </div>
         </div >
 
-
+      </main>
       <!--footer include-->
       <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
       <!--script include-->
@@ -353,6 +354,7 @@
       }
 
     </script >
-
+  </div>
+</div>
 </body >
 </html >
