@@ -8,11 +8,8 @@
 
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-<div id="layoutSidenav">
-    <div  data-th-replace="~{fragments/sideNav :: sideNavFragment}">
-    </div>
-    <div id="layoutSidenav_content">
-        <main>
+</br>
+</br>
             <!--heading Area-->
             <div class="container-fluid ">
                 <h1 class="mt-4">Purchase Orders</h1>
@@ -63,9 +60,9 @@
                                             <a data-th-if="${grnStatus}" data-th-href="${'/goodReceivedNote/' + purchaseOrder.id}"
                                                class="btn btn-outline-success btn-sm"><i
                                                     class="fa fa-edit" style="font-size: 15px"></i>&nbsp;GRN</a>
-                                            <a data-th-href="${'/purchaseOrder/delete/' + purchaseOrder.id}"
+                                            <a data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" data-th-href="${'/purchaseOrder/delete/' + purchaseOrder.id}"
                                                class="btn btn-outline-danger btn-sm">
-                                                <!--data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"--> <i
+                                                 <i
                                                     class="fa fa-trash" style="font-size: 15px"></i> Delete</a>
                                         </th>
                                     </tr>
@@ -93,11 +90,10 @@
                     </div>
                 </div>
             </div>
-        </main>
+
         <div  data-th-replace="~{fragments/footer :: footerFragment}"></div>
         <!--script include-->
         <div data-th-replace="~{fragments/script :: scriptFragment}"></div>
-    </div>
-</div>
+
 </body>
 </html>

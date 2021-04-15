@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <title>item</title>
 </head>
-<body class="sb-nav-fixed">
+<br class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-<div id="layoutSidenav">
-    <div th:replace="~{fragments/sideNav :: sideNavFragment}">
-    </div>
-    <div id="layoutSidenav_content">
-        <main>
+</br>
+</br>
+
+
             <!--heading Area-->
             <div class="container-fluid">
-                <h1 class="mt-4">Items</h1>
+                <h1 class="mt-4 ">Items</h1>
                 <div class="row formManagement border-info mb-4 mt-4">
                     <!-- New Item Button-->
                     <div class="col">
@@ -93,15 +92,14 @@
                     </div>
                 </div>
             </div>
-        </main>
+
         <!--footer include-->
         <footer data-th-replace="~{fragments/footer :: footerFragment}"></footer>
         <!--script include-->
         <script data-th-replace="~{fragments/script :: scriptFragment}"></script>
 
 
-    </div>
-</div>
+
 
 </body>
 </html>
