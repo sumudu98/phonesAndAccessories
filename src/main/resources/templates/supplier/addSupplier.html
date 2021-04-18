@@ -73,7 +73,7 @@
                                         <label class="control-label" for="contactOne">Mobile No :</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input id="contactOne"  data-th-field="*{contactOne}" class="form-control mobile" tabindex="5" type="number" maxlength="10" min="9" required/>
+                                        <input id="contactOne"  pattern="([0][7][\d]{8}$)|^([7][\d]{8})" title="This nic is not accepted"  data-th-field="*{contactOne}" class="form-control mobile" tabindex="5" type="number"  required/>
                                         <span class="error"   data-th-errors="*{contactOne}"
                                                data-th-if="${#fields.hasErrors('contactOne')}" id="mobileOneError">Error Mobile Number</span>
                                     </div>
