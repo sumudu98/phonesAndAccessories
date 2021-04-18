@@ -42,8 +42,9 @@
             </li>-->
 
             <!--Administration-->
+           <!--data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' , 'ROLE_ADMIN')"   role privilage-->
             <li class="nav-itemBatch dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                <a  class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"> <i class="fa fa-user"></i> Administration</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_HR_MANAGER' ,'ROLE_ADMIN')"  data-th-href="@{'/employee'}" class="nav-link text-dark"> Employee Management </a>

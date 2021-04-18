@@ -109,7 +109,7 @@
                     <input id="nic" pattern="([0-9]{9}[|X|V]|[0-9]{12})" title="This nic is not accepted" data-th-field="*{nic}" class="form-control form-control-sm" tabindex="6" type="text"
                            maxlength="12"
                            minlength="10" required />
-                    <span class="error" id="nicError" data-th-errors="*{nic}"
+                    <span class="error" id="nicError" data-th-errors="*{nic}"d
                           data-th-if="${#fields.hasErrors('nic')}" >Error NIC Number</span >
                   </div >
                   <!--Date of birth-->
@@ -171,8 +171,9 @@
                   <!--Mobile Number One-->
                   <div class="col-md-2">
                     <label for="mobileOne"><small>Mobile [1]</small></label>
-                    <input id="mobileOne" data-th-field="*{mobileOne}" class="form-control form-control-sm mobile" tabindex="13"
+                    <input id="mobileOne"  data-th-field="*{mobileOne}" class="form-control form-control-sm mobile" tabindex="13"
                            type="text"
+                           pattern="([0][7][\d]{8}$)|^([7][\d]{8})" title="Incorrect mobile number"
                            maxlength="10" min="9"
                            required />
                     <span class="error" data-th-errors="*{mobileOne}"
