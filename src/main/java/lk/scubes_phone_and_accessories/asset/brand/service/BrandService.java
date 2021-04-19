@@ -36,7 +36,8 @@ public class BrandService implements AbstractService<Brand, Integer> {
     @Override
     public Brand persist(Brand brand) {
         if(brand.getId()==null){
-            brand.setLiveDead(LiveDead.ACTIVE);}
+            brand.setLiveDead(LiveDead.ACTIVE);
+        }
         return brandDao.save(brand);
     }
 

@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 
     /*//--------------- data table short using - data table plugin ------- start //*/
-    if ($("#myTable").val() !== null || $("#myTable").val() === undefined) {
+    if ($("#myTable").val()) {
         $("#myTable").DataTable({
             "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
             "ordering": false,
@@ -24,22 +24,26 @@ $(document).ready(function () {
     /*//--------------- data table short using - data table plugin ------- start //*/
 
     /* Patient and employee Nic Validation - start*/
-    $("#nic").bind('keyup', function () {
-        let nic = $(this).val();
-        $("#dateOfBirth").val(calculateDateOfBirth(nic));
-//access our front-end gender*/
-        $("#gender").val(calculateGender(nic));
+    console.log($("#nic").val())
 
-    });
     /* Patient and employee Nic Validation - end*/
     //input type date can not be selected future date
-    $('[type="date"]').prop('max', function () {
+/*    $('[type="date"]').prop('max', function () {
         return new Date().toJSON().split('T')[0];
-    });
+    });*/
 
 });
 
 
+if ($("#nic").val()!== undefined && $("#nic") !==null) {
+    $("#nic").bind('keyup', function () {
+        let nic = $(this).val();
+        $("#dateOfBirth").val(calculateDateOfBirth(nic));
+        //access our front-end gender*/
+        $("#gender").val(calculateGender(nic));
+
+    });
+}
 
 // regex
 let nicRegex = /^([0-9]{9}[vV|xX])|^([0-9]{12})$/;
@@ -412,51 +416,28 @@ $("#invoiceFindValue").bind("keyup", function () {
 //custom invoice search page validation - end
 
 //search form date validation - start
-const milliSecondToDay = Date.parse(new Date());
-
-$("#startDate").bind("input", function () {
+$("#startDate, #endDate").bind("click", function () {
     let startDate = document.getElementById("startDate").value;
-
-//only start date has value
-    if (startDate.length !== 0) {
-        let milliSecondStartDate = Date.parse(startDate);
-        if (milliSecondToDay > milliSecondStartDate) {
-            backgroundColourChangeGood($(this));
-        } else {
-            backgroundColourChangeBad($(this));
-        }
-    } else {
-        backgroundColourChangeNothingToChange($(this));
-    }
-});
-
-$("#endDate").bind("input", function () {
     let endDate = document.getElementById("endDate").value;
 
-//only start date has value
     if (endDate.length !== 0) {
-        let milliSecondStartDate = Date.parse(endDate);
-        if (milliSecondToDay > milliSecondStartDate) {
+        $('#startDate').attr('max', $('#endDate').val());
+    }
+    if (startDate.length !== 0) {
+        $('#endDate').attr('min', $('#startDate').val());
+    }
+
+//only start date has value
+    if (startDate.length !== 0 && endDate.length !== 0) {
+        let milliSecondStartDate = Date.parse(startDate);
+        let milliSecondEndDate = Date.parse(endDate);
+        if (milliSecondEndDate > milliSecondStartDate) {
             backgroundColourChangeGood($(this));
         } else {
             backgroundColourChangeBad($(this));
         }
     } else {
         backgroundColourChangeNothingToChange($(this));
-    }
-});
-
-$('#endDate, #startDate').on('click', function () {
-    let endValue = $('#endDate').val();
-    let startValue = $('#startDate').val();
-    console.log(" end " + endValue + "  start " + startValue);
-    if (endValue !== null) {
-        $('#startDate').attr('max', $('#endDate').val());
-        console.log("1 end " + endValue + "  start " + startValue);
-    }
-    if (startValue !== null) {
-        $('#endDate').attr('min', $('#startDate').val());
-        console.log("2 end " + endValue + "  start " + startValue);
     }
 });
 
@@ -544,20 +525,6 @@ let deleteAllTableRow = function (tableName) {
     }
 };
 
-/*jquery - ui function*/
-//$( "input" ).checkboxradio;
-
-$(function () {
-    $("#").resizable({
-        autoHide: true,
-        aspectRatio: true,
-        ghost: true,
-    });
-});
-
-//$( ".login" ).draggable();
-//$( "#dateOfBirth" ).datepicker;
-//$( document ).tooltip();
 
 
 //password validator user add
@@ -638,7 +605,7 @@ $(".reveal").on('click', function () {
 });
 
 /*When edit employee if there is a nic number need to select relevant gender*/
-if ($("#nic").val() !== null || $("#nic").val() === undefined){
+if ($("#nic").val() !== null || $("#nic").val() !== undefined){
     $("input:radio[name=gender]").filter(`[value=${calculateGender($("#nic").val())}]`).prop('checked',true);
 }
 
