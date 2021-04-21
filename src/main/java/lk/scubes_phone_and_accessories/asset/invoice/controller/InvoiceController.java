@@ -1,6 +1,7 @@
 package lk.scubes_phone_and_accessories.asset.invoice.controller;
 
 
+import com.itextpdf.text.DocumentException;
 import lk.scubes_phone_and_accessories.asset.common_asset.model.TwoDate;
 import lk.scubes_phone_and_accessories.asset.customer.service.CustomerService;
 import lk.scubes_phone_and_accessories.asset.discount_ratio.service.DiscountRatioService;
@@ -16,12 +17,18 @@ import lk.scubes_phone_and_accessories.asset.ledger.entity.Ledger;
 import lk.scubes_phone_and_accessories.asset.ledger.service.LedgerService;
 import lk.scubes_phone_and_accessories.util.service.DateTimeAgeService;
 import lk.scubes_phone_and_accessories.util.service.MakeAutoGenerateNumberService;
+import lk.scubes_phone_and_accessories.util.service.TwilioMessageService;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -36,11 +43,12 @@ public class InvoiceController {
   private final DateTimeAgeService dateTimeAgeService;
   private final DiscountRatioService discountRatioService;
   private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
+  private final TwilioMessageService twilioMessageService;
 
   public InvoiceController(InvoiceService invoiceService, ItemService itemService, CustomerService customerService,
                            LedgerService ledgerService, DateTimeAgeService dateTimeAgeService,
                            DiscountRatioService discountRatioService,
-                           MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
+                           MakeAutoGenerateNumberService makeAutoGenerateNumberService, TwilioMessageService twilioMessageService) {
     this.invoiceService = invoiceService;
     this.itemService = itemService;
     this.customerService = customerService;
@@ -48,6 +56,7 @@ public class InvoiceController {
     this.dateTimeAgeService = dateTimeAgeService;
     this.discountRatioService = discountRatioService;
     this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
+    this.twilioMessageService = twilioMessageService;
   }
 
   @GetMapping
@@ -132,10 +141,15 @@ public class InvoiceController {
       ledger.setQuantity(String.valueOf(availableQuantity - sellQuantity));
       ledgerService.persist(ledger);
     }
-
-    //todo - if invoice is required needed to send pdf to backend
-
-    return "redirect:/invoice/add";
+    if ( saveInvoice.getCustomer() != null ) {
+      try {
+        String mobileNumber = saveInvoice.getCustomer().getMobile().substring(1, 10);
+        twilioMessageService.sendSMS("+94" + mobileNumber, "Thank You Come Again \n Samarasinghe Super ");
+      } catch ( Exception e ) {
+        e.printStackTrace();
+      }
+    }
+    return "redirect:/invoice/fileView/" + saveInvoice.getId();
   }
 
 
@@ -146,4 +160,30 @@ public class InvoiceController {
     invoiceService.persist(invoice);
     return "redirect:/invoice";
   }
+
+  @GetMapping( value = "/file/{id}", produces = MediaType.APPLICATION_PDF_VALUE )
+  public ResponseEntity< InputStreamResource > invoicePrint(@PathVariable( "id" ) Integer id) throws DocumentException {
+    var headers = new HttpHeaders();
+    headers.add("Content-Disposition", "inline; filename=invoice.pdf");
+    InputStreamResource pdfFile = new InputStreamResource(invoiceService.createPDF(id));
+
+    return ResponseEntity
+        .ok()
+        .headers(headers)
+        .contentType(MediaType.APPLICATION_PDF)
+        .body(pdfFile);
+  }
+
+  @GetMapping( "/fileView/{id}" )
+  public String fileRequest(@PathVariable( "id" ) Integer id, Model model, HttpServletRequest request) {
+    model.addAttribute("pdfFile", MvcUriComponentsBuilder
+        .fromMethodName(InvoiceController.class, "invoicePrint", id)
+        .toUriString());
+    model.addAttribute("redirectUrl", MvcUriComponentsBuilder
+        .fromMethodName(InvoiceController.class, "getInvoiceForm", "")
+        .toUriString());
+    return "invoice/pdfSilentPrint";
+  }
+
 }
+

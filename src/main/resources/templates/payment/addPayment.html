@@ -6,8 +6,11 @@
 </head >
 <body >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-</br>
-</br>
+<div id="layoutSidenav">
+  <div data-th-replace="~{fragments/sideNav :: sideNavFragment}">
+  </div>
+  <div id="layoutSidenav_content">
+    <main>
       <div class="container-fluid">
         <!--Heading Area-->
         <div class="row formManagement border-info mb-4 mt-4">
@@ -225,7 +228,7 @@
 
 
       </div>
-
+    </main>
     <!--footer include-->
     <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
     <!--script include-->
@@ -281,6 +284,7 @@
           return poValue - amount;
       }
   </script >
-
+  </div>
+</div>
 </body >
 </html >

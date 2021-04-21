@@ -6,8 +6,7 @@
 </head>
 <body class="sb-nav-fixed">
 <nav  data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
+
             <!--heading Area-->
             <div class="container-fluid">
                 <h1 class="mt-4">User Management</h1>
@@ -50,7 +49,7 @@
                                                         class="fa fa-edit"></i>&nbsp;Edit</a>
                                                 <a class="btn btn-danger btn-sm" id="userRemove"  data-th-href="${'/user/remove/' + user.id}"
                                                    data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                                                    <i aria-hidden="true" class="fa fa-trash"></i>Delete</a>
+                                                    <iaria-hidden="true" class="fa fa-trash"></i>Delete</a>
                                             </td>
                                         </tr>
                                         </tbody>

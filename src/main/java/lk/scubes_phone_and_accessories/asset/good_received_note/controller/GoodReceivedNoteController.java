@@ -4,6 +4,8 @@ import lk.scubes_phone_and_accessories.asset.common_asset.model.enums.LiveDead;
 import lk.scubes_phone_and_accessories.asset.good_received_note.entity.GoodReceivedNote;
 import lk.scubes_phone_and_accessories.asset.good_received_note.entity.enums.GoodReceivedNoteState;
 import lk.scubes_phone_and_accessories.asset.good_received_note.service.GoodReceivedNoteService;
+import lk.scubes_phone_and_accessories.asset.item.entity.Item;
+import lk.scubes_phone_and_accessories.asset.item.service.ItemService;
 import lk.scubes_phone_and_accessories.asset.ledger.entity.Ledger;
 import lk.scubes_phone_and_accessories.asset.ledger.service.LedgerService;
 import lk.scubes_phone_and_accessories.asset.purchase_order.entity.PurchaseOrder;
@@ -25,12 +27,15 @@ public class GoodReceivedNoteController {
     private final GoodReceivedNoteService goodReceivedNoteService;
     private final PurchaseOrderService purchaseOrderService;
     private final LedgerService ledgerService;
+    private final ItemService itemService;
 
     public GoodReceivedNoteController(GoodReceivedNoteService goodReceivedNoteService,
-                                      PurchaseOrderService purchaseOrderService, LedgerService ledgerService) {
+                                      PurchaseOrderService purchaseOrderService, LedgerService ledgerService,
+                                      ItemService itemService) {
         this.goodReceivedNoteService = goodReceivedNoteService;
         this.purchaseOrderService = purchaseOrderService;
         this.ledgerService = ledgerService;
+        this.itemService = itemService;
     }
 
 
@@ -59,6 +64,8 @@ public class GoodReceivedNoteController {
         for ( Ledger ledger : goodReceivedNote.getLedgers() ) {
             Ledger ledgerDB = ledgerService.findByItemAndSellPrice(ledger.getItem(),
                                                                                     ledger.getItem().getSellPrice());
+            Item item = itemService.findById(ledger.getItem().getId());
+            ledger.setMainCategory(item.getCategory().getMainCategory());
 //if there is on value in ledger need to update it
             if ( ledgerDB != null ) {
                 //before update need to check price and expire date

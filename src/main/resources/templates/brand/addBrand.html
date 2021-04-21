@@ -6,8 +6,7 @@
 </head>
 <body>
 <nav  data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
+
             <!--Heading Area-->
             <div class="container-fluid">
                 <div class="row formManagement border-info mb-4 mt-4">
@@ -46,6 +45,7 @@
                         <div class="form-group col-sm-4" id="idStatus"  data-th-if="${addStatus==false}">
                             <label for="id">ID :</label>
                             <input type="text" class="form-control" id="id"  data-th-field="*{id}" readonly/>
+                            <input type="text" class="form-control"   data-th-field="*{liveDead}" readonly hidden/>
                         </div>
                     </div>
                     <div class="row mb-4" id="updateStatus"  data-th-if="${addStatus==false}">
@@ -89,7 +89,6 @@
         <div  data-th-replace="~{fragments/footer :: footerFragment}"></div>
         <!--script include-->
         <div  data-th-replace="~{fragments/script :: scriptFragment}"></div>
-
 
 </body>
 </html>

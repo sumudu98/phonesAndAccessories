@@ -1,60 +1,83 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body id="loginBack">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="container offset-5 col-6 p-5" style="border: 3px solid #8AC007;">
-    <div class="col-12">
-        <h1 class="text-light">Account Login</h1>
-        <br>
-        <form th:action="${'/login'}" method="post">
-            <div class="textbox container-fluid">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <input type="text" id="username" th:name="${'username'}" placeholder="username" name="" value="">
+<!doctype html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Login</title>
+        <script   data-th-src="@{/js/all.min.js}"></script>
+        <link   data-th-href="@{/css/styles.css}" media="all" rel="stylesheet" type="text/css"/>
+        <style>
+            body {
+                background-image: url(../img/loginBackground.png);
+                -webkit-background-size:cover;
+                background-size: cover;
+                background-position:center center;
+                background-repeat: no-repeat;
+            }
+        </style>
+    </head>
+    <body class="bg-dark">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-body">
+                                        <form  action="/login" method="post">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="username">Username</label>
+                                                <input class="form-control py-4" type="text" name="username" id="username" placeholder="Enter username" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputPassword">Password</label>
+                                                <input class="form-control py-4" type="password" name="password" id="inputPassword" placeholder="Enter password" required/>
+                                            </div>
+
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                               <button class="btn btn-primary" type="submit">Login</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small">Crystal Telecom Services</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
-            <div class="textbox container-fluid">
-                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                <input type="password" id="inputPassword" th:name="${'password'}" placeholder="password" name=""
-                       value="">
-            </div>
-            <br>
-            <button class="btnloging  " type="submit">LOGIN</button>
-            </br>
-            </br>
-            <div class="container-fluid " data-th-if="${param.error}"><p
-                    class="bg-white text-capitalize text-danger text-lg-center">Invalid username or
-                password. </p></div>
-            <div class="container-fluid "><p id="errorMessage" data-th-text="${err}"
-                                             class="bg-white text-capitalize text-danger text-lg-center"></p>
-            </div>
-
-
-
-
-        </form>
-    </div>
-</div>
-
-<div class="form-row container">
-    <div class="offset-8">
-        <h2 class="text-light ml-5">Scubes Phones & Accessories</h2>
-    </div>
-</div>
-
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
-
-</body>
+        </div>
+        <div   data-th-replace="~{fragments/footer :: footerFragment}"></div>
+        &lt;!&ndash;script include&ndash;&gt;
+        <div  data-th-replace="~{fragments/script :: scriptFragment}"></div>
+    </body>
 </html>
+
+
+<!--
+<!doctype html>
+<html lang="en" >
+<head >
+    <meta charset="UTF-8" >
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" >
+    <title >Document</title >
+</head >
+<body >
+<form action="/login" method="post">
+    <input type="text" name="username" id="" >
+    <input type="text" name="password" id="" >
+    <button type="submit" >Submit</button >
+</form >
+</body >
+</html >
+-->

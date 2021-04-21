@@ -6,10 +6,6 @@
 </head>
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
-
-
 
             <!--Heading Area-->
             <div class="container-fluid ">
@@ -119,7 +115,7 @@
                                 <!--Address-->
                                 <div class="col-md-12">
                                     <label class="control-label" for="address">Address :</label>
-                                    <textarea id="address" required data-th-field="*{address}" class="form-control" tabindex="7" rows="3" style="font-size: medium"></textarea>
+                                    <textarea id="address"  data-th-field="*{address}" class="form-control" tabindex="7" rows="3" style="font-size: medium"></textarea>
                                     <span class="error"   data-th-errors="*{address}"
                                           data-th-if="${#fields.hasErrors('address')}" id="addressError">Error Address</span>
                                 </div>

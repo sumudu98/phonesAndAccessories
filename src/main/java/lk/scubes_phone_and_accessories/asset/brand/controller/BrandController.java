@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,10 +46,21 @@ public class BrandController {
     public String persist(@Valid @ModelAttribute Brand brand, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("addStatus", true);
-            model.addAttribute("brand", bindingResult);
+            model.addAttribute("brand", brand);
             return "brand/addBrand";
         }
-        brandService.persist(brand);
+        try {
+            brandService.persist(brand);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            ObjectError error = new ObjectError("brand", e.getCause().getCause().getMessage());
+            bindingResult.addError(error);
+            model.addAttribute("addStatus", true);
+            model.addAttribute("brand", brand);
+            return "brand/addBrand";
+        }
+
+
         return "redirect:/brand";
     }
 

@@ -8,8 +8,11 @@
 <body class="sb-nav-fixed">
 <!--/* Nav bar is included */-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
-</br>
-</br>
+<div id="layoutSidenav">
+    <div  data-th-replace="~{fragments/sideNav :: sideNavFragment}">
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
             <div class="container-fluid">
                 <div class="card mb-4 my-4">
                     <div class="container-fluid my-4">
@@ -89,12 +92,13 @@
                     </div>
                 </div>
             </div>
-
+        </main>
         <!--/* footer is */-->
         <footer data-th-replace="~{fragments/footer :: footerFragment}"></footer>
         <!--/* script is included */-->
         <script data-th-replace="~{fragments/script :: scriptFragment}"></script>
 
-
+    </div>
+</div>
 </body>
 </html>
