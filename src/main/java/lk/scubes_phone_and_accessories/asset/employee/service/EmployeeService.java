@@ -84,5 +84,10 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
         return employeeDao.findByNic(nic);
     }
 
+    @Cacheable
+    public Employee findByOfficeEmail(String officeEmail) {
+        return employeeDao.findByOfficeEmail(officeEmail);
+    }
+
 
 }

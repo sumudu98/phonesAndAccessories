@@ -150,11 +150,11 @@ public class InvoiceService implements AbstractService< Invoice, Integer > {
     pdfCellHeaderCommonStyle(quantityHeader);
     ledgerItemDisplay.addCell(quantityHeader);
 
-    PdfPCell warrantyNumberHeader = new PdfPCell(new Paragraph("WarrantyNumber", tableHeaderOnly));
+    PdfPCell warrantyNumberHeader = new PdfPCell(new Paragraph("Warranty Number", tableHeaderOnly));
     pdfCellHeaderCommonStyle(warrantyNumberHeader);
     ledgerItemDisplay.addCell(warrantyNumberHeader);
 
-    PdfPCell warrantyPeriodHeader = new PdfPCell(new Paragraph("warrantyPeriod", tableHeaderOnly));
+    PdfPCell warrantyPeriodHeader = new PdfPCell(new Paragraph("Warranty Period", tableHeaderOnly));
     pdfCellHeaderCommonStyle(warrantyPeriodHeader);
     ledgerItemDisplay.addCell(warrantyPeriodHeader);
 

@@ -119,17 +119,33 @@ import java.util.stream.Collectors;
       return commonThings(model);
     }
 
-    //Employee add and update
+    //Employee add and update   allanwa ena eka post method
     @PostMapping( value = {"/save", "/update"} )
     public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model
     ) {
+      /*uniq allanwa*/
       Employee employeeNic = null;
+      Employee officeEmail = null;
+
       if ( employee.getNic() != null && employee.getId() == null ) {
         employeeNic = employeeService.findByNic(employee.getNic());
       }
       if ( employeeNic != null ) {
         ObjectError error = new ObjectError("employee",
                 "There is employee on same nic number . System message ");
+        result.addError(error);
+
+      }
+
+
+      if ( employee.getOfficeEmail() != null && employee.getId() == null ) {
+        officeEmail = employeeService.findByOfficeEmail(employee.getOfficeEmail());
+      }
+
+
+      if ( officeEmail != null ) {
+        ObjectError error = new ObjectError("employee",
+                "There is employee on same Email Address . System message ");
         result.addError(error);
       }
       if ( result.hasErrors() ) {
@@ -145,9 +161,9 @@ import java.util.stream.Collectors;
       if ( employee.getId() == null ) {
         Employee lastEmployee = employeeService.lastEmployee();
         if ( lastEmployee.getCode() == null ) {
-          employee.setCode("CTSE" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+          employee.setCode("SPSE" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
         } else {
-          employee.setCode("CTSE" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(4)).toString());
+          employee.setCode("SPSE" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(4)).toString());
         }
       }
 

@@ -5,6 +5,7 @@
 </head >
 <body class="sb-nav-fixed">
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
+<br/>
 
         <!--Heading Area-->
         <div class="container-fluid">
@@ -75,14 +76,14 @@
                   <!--Name-->
                   <div class="col-md-7" >
                     <label for="name"><small>Name</small></label>
-                    <input id="name" data-th-field="*{name}" class="form-control form-control-sm" tabindex="4" type="text" required />
+                    <input id="name" data-th-field="*{name}" class="form-control form-control-sm text-capitalize" tabindex="4" type="text" required />
                     <span id="nameError" data-th-errors="*{name}"
                           data-th-if="${#fields.hasErrors('name')}" class="error" >Error Name</span >
                   </div >
                   <!--Prefered Name-->
                   <div class="col-md-3" >
                     <label for="callingName"><small>Prefered Name</small></label>
-                    <input id="callingName" data-th-field="*{callingName}" class="form-control form-control-sm" tabindex="5"
+                    <input id="callingName" data-th-field="*{callingName}" class="form-control form-control-sm text-capitalize"  tabindex="5"
                            type="text" minlength="5" />
                     <span class="error" data-th-errors="*{callingName}"
                           data-th-if="${#fields.hasErrors('callingName')}" id="callingNameError" >Error Calling Name</span >
@@ -290,7 +291,7 @@
                     </button >
                   </div >
                 </div >
-                <div class="form-row" >
+                <div class="form-row text-danger" style="font-weight: bolder" >
                   <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
                   <ul >
                     <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="error" ></li >

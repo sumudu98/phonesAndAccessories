@@ -10,11 +10,8 @@
 <link data-th-href="@{/css/modal.css}" media="all" rel="stylesheet" type="text/css" />
 <!--/* Nav bar is included */-->
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-<div id="layoutSidenav" >
-  <div data-th-replace="~{fragments/sideNav :: sideNavFragment}" >
-  </div >
-  <div id="layoutSidenav_content" >
-    <main >
+<br/>
+
       <div class="container-fluid" >
         <div class="card bg-light m-4" >
           <div class="card-body" >
@@ -42,7 +39,7 @@
                   </div >
                   <!--warranty filed-->
                   <div class="form-group col-md-6" id="warrantyBlock" >
-                    <label for="warrantyNumber" class="text-dark" >Warranty No:</label >
+                    <label for="warrantyNumber" class="text-dark" >Warranty/EMI No:</label >
                     <input id="warrantyNumber" class="form-control" type="number" />
                   </div >
                 </div >
@@ -119,7 +116,7 @@
                     <th >Available Quantity</th >
                     <th >Unit Price</th >
                     <th >Quantity</th >
-                    <th >Warranty Number</th >
+                    <th >Warranty/EMI Number</th >
                     <th >Line Total</th >
                     <th >Modify</th >
                   </tr >
@@ -360,7 +357,7 @@
           </div >
         </div >
       </div >
-    </main >
+
     <!--/* footer is */-->
     <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
     <!--/* script is included */-->
@@ -637,7 +634,6 @@
         }
 
     </script >
-  </div >
-</div >
+
 </body >
 </html >

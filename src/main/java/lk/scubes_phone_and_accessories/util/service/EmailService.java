@@ -38,7 +38,7 @@ public class EmailService {
 
         try {
             mailMessage.setTo(receiverEmail);
-            mailMessage.setFrom("-(Crystal Telecom - Negambo - (not reply))");
+            mailMessage.setFrom("-(Scubes Phones & Accessories- Raddolugama - (not reply))");
             mailMessage.setSubject(subject);
             mailMessage.setText(message);
 
