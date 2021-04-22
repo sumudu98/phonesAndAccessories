@@ -2,6 +2,8 @@ package lk.scubes_phone_and_accessories.asset.purchase_order.controller;
 
 
 import lk.scubes_phone_and_accessories.asset.common_asset.service.CommonService;
+import lk.scubes_phone_and_accessories.asset.item.entity.Item;
+import lk.scubes_phone_and_accessories.asset.item.service.ItemService;
 import lk.scubes_phone_and_accessories.asset.purchase_order.entity.PurchaseOrder;
 import lk.scubes_phone_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderPriority;
 import lk.scubes_phone_and_accessories.asset.purchase_order.entity.enums.PurchaseOrderStatus;
@@ -10,6 +12,8 @@ import lk.scubes_phone_and_accessories.asset.purchase_order_item.entity.Purchase
 import lk.scubes_phone_and_accessories.asset.supplier.entity.Supplier;
 import lk.scubes_phone_and_accessories.asset.supplier.service.SupplierService;
 import lk.scubes_phone_and_accessories.asset.supplier_item.controller.SupplierItemController;
+import lk.scubes_phone_and_accessories.asset.supplier_item.entity.SupplierItem;
+import lk.scubes_phone_and_accessories.asset.supplier_item.service.SupplierItemService;
 import lk.scubes_phone_and_accessories.util.service.EmailService;
 import lk.scubes_phone_and_accessories.util.service.MakeAutoGenerateNumberService;
 import lk.scubes_phone_and_accessories.util.service.OperatorService;
@@ -33,17 +37,21 @@ public class PurchaseOrderController {
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
     private final OperatorService operatorService;
     private final EmailService emailService;
+    private final ItemService itemService;
+    private final SupplierItemService supplierItemService;
 
     public PurchaseOrderController(PurchaseOrderService purchaseOrderService,
                                    SupplierService supplierService
             , CommonService commonService, MakeAutoGenerateNumberService makeAutoGenerateNumberService,
-                                   OperatorService operatorService, EmailService emailService) {
+                                   OperatorService operatorService, EmailService emailService, ItemService itemService, SupplierItemService supplierItemService) {
         this.purchaseOrderService = purchaseOrderService;
         this.supplierService = supplierService;
         this.commonService = commonService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
         this.operatorService = operatorService;
         this.emailService = emailService;
+        this.itemService = itemService;
+        this.supplierItemService = supplierItemService;
     }
 
     @GetMapping
@@ -105,12 +113,16 @@ public class PurchaseOrderController {
         if (purchaseOrderSaved.getSupplier().getEmail() != null) {
             StringBuilder message = new StringBuilder("Item Name\t\t\t\t\tQuantity\t\t\tItem Price\t\t\tTotal(Rs)\n");
             for (int i = 0; i < purchaseOrder.getPurchaseOrderItems().size(); i++) {
+                Item item = itemService.findById(purchaseOrder.getPurchaseOrderItems().get(i).getItem().getId());
+                SupplierItem supplierItem = supplierItemService.findBySupplierAndItem(purchaseOrderSaved
+                .getSupplier(), item);
                 message
-                        .append(purchaseOrder.getPurchaseOrderItems().get(i).getItem().getName())
+                        .append(item.getName())
                         .append("\t\t\t\t\t")
                         .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getQuantity())
                         .append("\t\t\t")
-                        .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getItem().getSellPrice()).append("\t\t\t")
+                        .append(supplierItem.getPrice())
+                        .append("\t\t\t")
                         .append(purchaseOrderSaved.getPurchaseOrderItems().get(i).getLineTotal()).append("\n");
             }
             emailService.sendEmail(purchaseOrderSaved.getSupplier().getEmail(), "Requesting Items According To PO Code " + purchaseOrder.getCode(), message.toString());
